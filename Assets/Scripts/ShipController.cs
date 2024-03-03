@@ -6,8 +6,8 @@ public class ShipController : MonoBehaviour
 {
     Rigidbody rb;
     public Camera cam;
-    Vector2 input;
-    Vector2 moveVector;
+    Vector3 input;
+    Vector3 moveVector;
 
     public float moveSpeed = 5f;
 
@@ -22,7 +22,7 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         moveVector = input * moveSpeed;
     }
 

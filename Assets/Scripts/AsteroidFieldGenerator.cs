@@ -12,7 +12,7 @@ public class AsteroidFieldGenerator : MonoBehaviour
     //public int height;
 
     public List<GameObject> asteroidPrefabs;
-    public List<Collider> asteroidColliders;
+    private List<Collider> asteroidColliders = new List<Collider>();
 
     private List<GameObject> asteroids = new List<GameObject>();
 
@@ -36,13 +36,12 @@ public class AsteroidFieldGenerator : MonoBehaviour
             Vector3 rndPos = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
             rndPos = transform.TransformPoint(rndPos * .5f);
             //Check if we are overlapping.
-            while (Physics.BoxCast(rndPos, asteroidColliders[prefabIndex].bounds.size, Vector3.zero))
+            while (Physics.CheckBox(rndPos, asteroidColliders[prefabIndex].bounds.size))
             {
                 rndPos = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
                 rndPos = transform.TransformPoint(rndPos * .5f);
             }
             //Instantiate random asteroid prefab at the already generated random position
-            print(prefabIndex);
             asteroids.Add(Instantiate(asteroidPrefabs[prefabIndex], rndPos, Quaternion.identity));
         }
     }
