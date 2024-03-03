@@ -29,9 +29,8 @@ public class AsteroidFieldGenerator : MonoBehaviour
         
         for (int i = 0; i < density; i++)
         {
-            //Generate random index to select the prefab for use in this generation.
+            //Generate random index to select the prefab for use in this iteration.
             int prefabIndex = Random.Range(0, asteroidPrefabs.Count - 1);
-            Debug.Log(prefabIndex);
 
             Vector3 rndPos = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
             rndPos = transform.TransformPoint(rndPos * .5f);

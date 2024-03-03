@@ -11,7 +11,13 @@ public class ShipController : MonoBehaviour
 
     public float moveSpeed = 5f;
 
-    bool shouldBrake => Input.GetKey(KeyCode.Space);
+    //Shift slows the player down to zero.
+    bool shouldBrake => Input.GetKey(KeyCode.LeftShift);
+
+    //up axis for up/down movement
+    //Space -> Up
+    //LeftCtrl -> Down
+    float upAxis => (Input.GetKey(KeyCode.Space) ? 1 : 0) + (Input.GetKey(KeyCode.LeftControl) ? -1 : 0);
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +28,7 @@ public class ShipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        input = new Vector3(Input.GetAxisRaw("Horizontal"), upAxis, Input.GetAxisRaw("Vertical"));
         moveVector = input * moveSpeed;
     }
 
