@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float _health = 100f;
+    private float _oxygen = 100f;
 
     public ShipController shipController;
 
-    public float health { get { return _health; } set { _health = Mathf.Clamp(value, 0f, 100f); } }
+    public float oxygen { get { return _oxygen; } set { _oxygen = Mathf.Clamp(value, 0f, 100f); } }
 
     Rigidbody rb;
     public GameObject cam;
+    public TextMeshProUGUI oxygenText;
     Vector3 input;
     Vector3 moveVector;
+
+
 
     Quaternion camRotation;
 
@@ -73,8 +77,24 @@ public class PlayerController : MonoBehaviour
             moveVector = moveVector * moveSpeed;
 
             //Rotation
+            if (!shouldAlignWithShip)
+            {
+                camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+            }
+            else
+            {
+                //Make rotation match the ship's rotation.
+                //camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
 
-            camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+                /*Quaternion fromToRotation = Quaternion.Inverse(shipController.transform.rotation) * camRotation;
+
+                camRotation = Quaternion.Euler(camRotation.x, camRotation.y, camRotation.z);*/
+
+                camRotation *= Quaternion.Euler(transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
+                //camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
+            }
+
+            oxygenText.text = "O<sub>2</sub>:" + oxygen; 
         }
 
         
@@ -102,15 +122,9 @@ public class PlayerController : MonoBehaviour
             //Clamp to max speed.
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
-            if (!shouldAlignWithShip && transform.rotation != camRotation)
+            if (transform.rotation != camRotation)
             {
-                rb.MoveRotation(camRotation);
-            }
-            else if (shouldAlignWithShip)
-            {
-                //Make rotation match the ship's rotation.
-                camRotation = shipController.transform.rotation;
-                rb.MoveRotation(shipController.transform.rotation);
+                rb.MoveRotation(shipController.transform.rotation * camRotation);
             }
         }
         else
@@ -127,7 +141,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(collision.relativeVelocity.magnitude);
         if (collision.relativeVelocity.magnitude >= 1)
         {
-            health -= collision.relativeVelocity.magnitude * 0.75f;
+            oxygen -= collision.relativeVelocity.magnitude * 0.75f;
         }
     }
 
