@@ -8,6 +8,8 @@ public class ShipController : MonoBehaviour
 
     public float health { get { return _health; } set { _health = Mathf.Clamp(value, 0f, 100f); } }
 
+    [HideInInspector]
+    public FixedJoint fixedJoint;
     Rigidbody rb;
     public Camera cam;
     Vector3 input;
@@ -15,6 +17,8 @@ public class ShipController : MonoBehaviour
 
     Quaternion camRotation;
 
+
+    public bool isPlayerControlled;
     public float maxSpeed = 20f;
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
@@ -32,10 +36,16 @@ public class ShipController : MonoBehaviour
     //For rotation.
     Vector3 camInput => new Vector3((Input.GetKey(KeyCode.J) ? 1 : 0) + (Input.GetKey(KeyCode.L) ? -1 : 0), (Input.GetKey(KeyCode.I) ? 1 : 0) + (Input.GetKey(KeyCode.K) ? -1 : 0), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
 
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        fixedJoint = GetComponent<FixedJoint>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         camRotation = rb.rotation;
     }
 
@@ -83,5 +93,16 @@ public class ShipController : MonoBehaviour
         {
             health -= collision.relativeVelocity.magnitude * 0.75f;
         }
+    }
+
+    public void FreezeShip()
+    {
+        rb.velocity = Vector3.one;
+        rb.isKinematic = true;
+    }
+
+    public void UnfreezeShip()
+    {
+        rb.isKinematic = false;
     }
 }
