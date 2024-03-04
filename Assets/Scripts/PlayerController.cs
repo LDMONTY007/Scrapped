@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
 
     Quaternion camRotation;
+    Vector3 curCamRot = Vector3.zero;
 
     public float maxSpeed = 20f;
     public float moveSpeed = 5f;
@@ -89,9 +90,17 @@ public class PlayerController : MonoBehaviour
                 /*Quaternion fromToRotation = Quaternion.Inverse(shipController.transform.rotation) * camRotation;
 
                 camRotation = Quaternion.Euler(camRotation.x, camRotation.y, camRotation.z);*/
+                //curCamRot += camInput * Time.deltaTime * rotationSpeed;
+                //curCamRot.x = WrapAngle(curCamRot.x);
+                //curCamRot.y = WrapAngle(curCamRot.y);
+                //curCamRot.z = WrapAngle(curCamRot.z);
+                //camRotation *= Quaternion.Euler(transform.up * -curCamRot.x/* * Time.deltaTime * rotationSpeed*/);
+                
+                //Vector3 direction = shipController.transform.position - transform.position;
+                //direction = Vector3.ProjectOnPlane(direction, shipController.transform.up);
+                //transform.rotation = Quaternion.LookRotation(direction);
 
-                camRotation *= Quaternion.Euler(transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
-                //camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
+                camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
             }
 
             oxygenText.text = "O<sub>2</sub>:" + oxygen; 
@@ -169,5 +178,12 @@ public class PlayerController : MonoBehaviour
         shipController.FreezeShip();
         //unlock the player from the ship.
         shipController.fixedJoint.connectedBody = null;
+    }
+
+    //https://stackoverflow.com/questions/1628386/normalise-orientation-between-0-and-360
+    //Wraps an angle between 0 and 360 degrees.
+    public float WrapAngle(float angle)
+    {
+        return (angle % 360 + 360) % 360;
     }
 }
