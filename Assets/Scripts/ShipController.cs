@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
+    private float _health = 100f;
+
+    public float health { get { return _health; } set { _health = Mathf.Clamp(value, 0f, 100f); } }
+
     Rigidbody rb;
     public Camera cam;
     Vector3 input;
@@ -11,6 +15,7 @@ public class ShipController : MonoBehaviour
 
     Quaternion camRotation;
 
+    public float maxSpeed = 20f;
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
 
@@ -44,7 +49,7 @@ public class ShipController : MonoBehaviour
         
         //Rotation
         
-        camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z));
+        camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
     }
 
     private void FixedUpdate()
@@ -64,7 +69,19 @@ public class ShipController : MonoBehaviour
             rb.AddForce(moveVector);
         }
 
+        //Clamp to max speed.
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+
         if (transform.rotation != camRotation)
             rb.MoveRotation(camRotation);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.relativeVelocity.magnitude);
+        if (collision.relativeVelocity.magnitude >= 1)
+        {
+            health -= collision.relativeVelocity.magnitude * 0.75f;
+        }
     }
 }
