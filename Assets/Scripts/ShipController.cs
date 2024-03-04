@@ -8,7 +8,8 @@ public class ShipController : MonoBehaviour
     public Camera cam;
     Vector3 input;
     Vector3 moveVector;
-    Vector3 camRotation;
+
+    Quaternion camRotation;
 
     public float moveSpeed = 5f;
     public float rotationSpeed = 5f;
@@ -30,7 +31,7 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        camRotation = rb.rotation.eulerAngles;
+        camRotation = rb.rotation;
     }
 
     // Update is called once per frame
@@ -40,31 +41,10 @@ public class ShipController : MonoBehaviour
         //Vector projection to map inputs to match the orientation of the ship/camera.
         moveVector = transform.right * input.x + transform.forward * input.z + transform.up * input.y;
         moveVector = moveVector * moveSpeed;
-        //Rotation
-        //transform.eulerAngles = new Vector3(0, Mathf.Atan2(camInput.x, camInput.y) * 180 / Mathf.PI, 0);
-/*
-        Vector3 translation = camInput.y * transform.up;
-        translation += camInput.x * transform.right;
-        translation.z = 0;
-
-        Vector3 lookDir = Vector3.zero;
-
-        if (translation.magnitude > 0)
-        {
-            lookDir = translation;
-        }
-        else
-        {
-            lookDir = Vector3.zero;
-        }
-
-        if (lookDir.magnitude > 0)
-        {
-            Quaternion camRotation = Quaternion.LookRotation(camInput);
-            rb.MoveRotation(Quaternion.Slerp(transform.rotation, camRotation, Time.deltaTime * rotationSpeed));
-        }*/
         
-        camRotation += new Vector3(-camInput.y, -camInput.x, camInput.z);
+        //Rotation
+        
+        camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z));
     }
 
     private void FixedUpdate()
@@ -84,7 +64,7 @@ public class ShipController : MonoBehaviour
             rb.AddForce(moveVector);
         }
 
-
-        rb.MoveRotation(Quaternion.Euler(camRotation));
+        if (transform.rotation != camRotation)
+            rb.MoveRotation(camRotation);
     }
 }
