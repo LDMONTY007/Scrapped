@@ -35,6 +35,9 @@ public class PlayerController : MonoBehaviour
     //For rotation.
     Vector3 camInput => new Vector3((Input.GetKey(KeyCode.J) ? 1 : 0) + (Input.GetKey(KeyCode.L) ? -1 : 0), (Input.GetKey(KeyCode.I) ? 1 : 0) + (Input.GetKey(KeyCode.K) ? -1 : 0), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
 
+
+    bool shouldAlignWithShip => Input.GetKey(KeyCode.G);
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -99,8 +102,16 @@ public class PlayerController : MonoBehaviour
             //Clamp to max speed.
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
 
-            if (transform.rotation != camRotation)
+            if (!shouldAlignWithShip && transform.rotation != camRotation)
+            {
                 rb.MoveRotation(camRotation);
+            }
+            else if (shouldAlignWithShip)
+            {
+                //Make rotation match the ship's rotation.
+                camRotation = shipController.transform.rotation;
+                rb.MoveRotation(shipController.transform.rotation);
+            }
         }
         else
         {
