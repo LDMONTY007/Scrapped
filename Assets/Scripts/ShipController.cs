@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -15,8 +16,12 @@ public class ShipController : MonoBehaviour
     Vector3 input;
     Vector3 moveVector;
 
-    Quaternion camRotation;
+    public TextMeshProUGUI hullIntegrityText;
+    public GameObject damagePrefab;
 
+    Quaternion camRotation;
+    
+    private List<GameObject> damageDecals = new List<GameObject>();
 
     public bool isPlayerControlled;
     public float maxSpeed = 20f;
@@ -60,6 +65,10 @@ public class ShipController : MonoBehaviour
         //Rotation
         
         camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+
+        //if you get 10 damages you die.
+        health = 100f - (damageDecals.Count * 10);
+        hullIntegrityText.text = "Hull Integrity: " + health;
     }
 
     private void FixedUpdate()
@@ -68,10 +77,10 @@ public class ShipController : MonoBehaviour
         {
             //Apply opposite force to stop the ship.
             //Velocity * mass = force.
-            rb.AddForce(-rb.velocity * rb.mass);
-            if (rb.velocity.magnitude < 0.1)
+            rb.AddForce(-rb.linearVelocity * rb.mass);
+            if (rb.linearVelocity.magnitude < 0.1)
             {
-                rb.velocity = Vector3.zero;
+                rb.linearVelocity = Vector3.zero;
             }
         }
         else
@@ -80,7 +89,7 @@ public class ShipController : MonoBehaviour
         }
 
         //Clamp to max speed.
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+        rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
 
         if (transform.rotation != camRotation)
             rb.MoveRotation(camRotation);
@@ -89,15 +98,23 @@ public class ShipController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.relativeVelocity.magnitude);
-        if (collision.relativeVelocity.magnitude >= 1)
+
+        //TODO:
+        //get hit normal of the collision and spawn
+        //the "Damage" decal on that position using Quaternion.lookRotation to look at the direction of the normal.
+        //Also Make sure to keep a list of these objects.
+        if (!collision.collider.CompareTag("Player") && collision.relativeVelocity.magnitude >= 1)
         {
-            health -= collision.relativeVelocity.magnitude * 0.75f;
+            GameObject go = Instantiate(damagePrefab, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal), transform);
+            go.transform.localScale = new Vector3(go.transform.localScale.x / transform.localScale.x, go.transform.localScale.y / transform.localScale.y, go.transform.localScale.z / transform.localScale.z);
+
+            damageDecals.Add(go);
         }
     }
 
     public void FreezeShip()
     {
-        rb.velocity = Vector3.one;
+        rb.linearVelocity = Vector3.one;
         rb.isKinematic = true;
     }
 

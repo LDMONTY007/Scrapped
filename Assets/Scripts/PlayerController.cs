@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private float _oxygen = 100f;
 
     public ShipController shipController;
+    public GameObject playerUI;
+    public GameObject ShipUI;
 
     public float oxygen { get { return _oxygen; } set { _oxygen = Mathf.Clamp(value, 0f, 100f); } }
 
@@ -117,10 +119,10 @@ public class PlayerController : MonoBehaviour
             {
                 //Apply opposite force to stop the ship.
                 //Velocity * mass = force.
-                rb.AddForce(-rb.velocity * rb.mass);
-                if (rb.velocity.magnitude < 0.1)
+                rb.AddForce(-rb.linearVelocity * rb.mass);
+                if (rb.linearVelocity.magnitude < 0.1)
                 {
-                    rb.velocity = Vector3.zero;
+                    rb.linearVelocity = Vector3.zero;
                 }
             }
             else
@@ -129,7 +131,7 @@ public class PlayerController : MonoBehaviour
             }
 
             //Clamp to max speed.
-            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
 
             if (transform.rotation != camRotation)
             {
@@ -165,6 +167,8 @@ public class PlayerController : MonoBehaviour
         shipController.UnfreezeShip();
         //Lock the player to the ship.
         shipController.fixedJoint.connectedBody = rb;
+        ShipUI.SetActive(true);
+        playerUI.SetActive(false);
     }
 
     public void StopControllingShip()
@@ -178,6 +182,8 @@ public class PlayerController : MonoBehaviour
         shipController.FreezeShip();
         //unlock the player from the ship.
         shipController.fixedJoint.connectedBody = null;
+        ShipUI.SetActive(false);
+        playerUI.SetActive(true);
     }
 
     //https://stackoverflow.com/questions/1628386/normalise-orientation-between-0-and-360
