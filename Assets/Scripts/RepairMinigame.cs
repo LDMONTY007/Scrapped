@@ -21,6 +21,10 @@ public class RepairMinigame : MonoBehaviour
 
     private float prevPos = 0;
 
+    public int repairCount = 0;
+
+    public PlayerController playerController;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -75,8 +79,9 @@ public class RepairMinigame : MonoBehaviour
         currentTime += timeIncrement;
 
 
-        if (Input.GetKeyDown(KeyCode.H) && RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
+        if (Input.GetKeyDown(KeyCode.R) && RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
         {
+            repairCount++;
             StartCoroutine(ColorDelay());
         }
 
@@ -118,8 +123,21 @@ public class RepairMinigame : MonoBehaviour
             time -= Time.deltaTime;
             yield return null;
         }
-        SetRandomHitPos();
+
         sliderMaterial.SetColor("_LineColor", Color.red);
         hitAreaTransform.gameObject.GetComponent<Image>().color = Color.red;
+        if (repairCount >= 3)
+        {
+            repairCount = 0;
+            //disable this object.
+            //gameObject.SetActive(false);
+            //Stop repairing.
+            playerController.StopRepairing();
+            //StopCoroutine(ColorDelay());
+        }
+        else
+        {
+            SetRandomHitPos();
+        }
     }
 }

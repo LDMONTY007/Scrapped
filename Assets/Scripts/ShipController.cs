@@ -20,8 +20,9 @@ public class ShipController : MonoBehaviour
     public GameObject damagePrefab;
 
     Quaternion camRotation;
-    
-    private List<GameObject> damageDecals = new List<GameObject>();
+
+    [HideInInspector]
+    public List<GameObject> damageDecals = new List<GameObject>();
 
     public bool isPlayerControlled;
     public float maxSpeed = 20f;

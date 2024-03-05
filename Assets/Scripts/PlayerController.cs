@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public GameObject playerUI;
     public GameObject ShipUI;
 
+    private GameObject currentRepairObj;
+
     public float oxygen { get { return _oxygen; } set { _oxygen = Mathf.Clamp(value, 0f, 100f); } }
 
     Rigidbody rb;
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     Vector3 input;
     Vector3 moveVector;
 
-
+    public GameObject RepairPanel;
 
     Quaternion camRotation;
     Vector3 curCamRot = Vector3.zero;
@@ -45,9 +47,15 @@ public class PlayerController : MonoBehaviour
 
     bool shouldAlignWithShip => Input.GetKey(KeyCode.G);
 
+    public bool isRepairing = false;
+
+    //Get a mask that includes every layer other than the player layer.
+    int playerMask;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        playerMask = ~LayerMask.GetMask("Player");
     }
 
     // Start is called before the first frame update
@@ -79,31 +87,49 @@ public class PlayerController : MonoBehaviour
             moveVector = transform.right * input.x + transform.forward * input.z + transform.up * input.y;
             moveVector = moveVector * moveSpeed;
 
-            //Rotation
-            if (!shouldAlignWithShip)
+            if (!isRepairing)
             {
-                camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+                //Rotation
+                if (!shouldAlignWithShip)
+                {
+                    camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+                }
+                else
+                {
+                    //Make rotation match the ship's rotation.
+                    //camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+
+                    /*Quaternion fromToRotation = Quaternion.Inverse(shipController.transform.rotation) * camRotation;
+
+                    camRotation = Quaternion.Euler(camRotation.x, camRotation.y, camRotation.z);*/
+                    //curCamRot += camInput * Time.deltaTime * rotationSpeed;
+                    //curCamRot.x = WrapAngle(curCamRot.x);
+                    //curCamRot.y = WrapAngle(curCamRot.y);
+                    //curCamRot.z = WrapAngle(curCamRot.z);
+                    //camRotation *= Quaternion.Euler(transform.up * -curCamRot.x/* * Time.deltaTime * rotationSpeed*/);
+
+                    //Vector3 direction = shipController.transform.position - transform.position;
+                    //direction = Vector3.ProjectOnPlane(direction, shipController.transform.up);
+                    //transform.rotation = Quaternion.LookRotation(direction);
+
+                    camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
+                }
+
+
+                #region Check to open repair minigame
+
+                if (Input.GetKeyDown(KeyCode.R) && Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, 5f, playerMask))
+                {
+                    if (hitInfo.collider.CompareTag("Repairable"))
+                    {
+                        StartRepairing(hitInfo.collider.gameObject);
+                    }
+                }
+
+                #endregion
             }
-            else
-            {
-                //Make rotation match the ship's rotation.
-                //camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
 
-                /*Quaternion fromToRotation = Quaternion.Inverse(shipController.transform.rotation) * camRotation;
 
-                camRotation = Quaternion.Euler(camRotation.x, camRotation.y, camRotation.z);*/
-                //curCamRot += camInput * Time.deltaTime * rotationSpeed;
-                //curCamRot.x = WrapAngle(curCamRot.x);
-                //curCamRot.y = WrapAngle(curCamRot.y);
-                //curCamRot.z = WrapAngle(curCamRot.z);
-                //camRotation *= Quaternion.Euler(transform.up * -curCamRot.x/* * Time.deltaTime * rotationSpeed*/);
-                
-                //Vector3 direction = shipController.transform.position - transform.position;
-                //direction = Vector3.ProjectOnPlane(direction, shipController.transform.up);
-                //transform.rotation = Quaternion.LookRotation(direction);
-
-                camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
-            }
 
             oxygenText.text = "O<sub>2</sub>:" + oxygen; 
         }
@@ -115,27 +141,34 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllingShip)
         {
-            if (shouldBrake)
+            if (!isRepairing)
             {
-                //Apply opposite force to stop the ship.
-                //Velocity * mass = force.
-                rb.AddForce(-rb.linearVelocity * rb.mass);
-                if (rb.linearVelocity.magnitude < 0.1)
+                if (shouldBrake)
                 {
-                    rb.linearVelocity = Vector3.zero;
+                    //Apply opposite force to stop the ship.
+                    //Velocity * mass = force.
+                    rb.AddForce(-rb.linearVelocity * rb.mass);
+                    if (rb.linearVelocity.magnitude < 0.5)
+                    {
+                        rb.linearVelocity = Vector3.zero;
+                    }
+                }
+                else
+                {
+                    rb.AddForce(moveVector);
+                }
+
+                //Clamp to max speed.
+                rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
+
+                if (transform.rotation != camRotation)
+                {
+                    rb.MoveRotation(shipController.transform.rotation * camRotation);
                 }
             }
             else
             {
-                rb.AddForce(moveVector);
-            }
-
-            //Clamp to max speed.
-            rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
-
-            if (transform.rotation != camRotation)
-            {
-                rb.MoveRotation(shipController.transform.rotation * camRotation);
+                rb.linearVelocity = Vector3.zero;
             }
         }
         else
@@ -191,5 +224,33 @@ public class PlayerController : MonoBehaviour
     public float WrapAngle(float angle)
     {
         return (angle % 360 + 360) % 360;
+    }
+
+    public void StartRepairing(GameObject repairObj)
+    {
+        if (currentRepairObj != null)
+        {
+            Debug.LogWarning("Tried to repair object while repairing another object!");
+            return;
+        }
+        currentRepairObj = repairObj;
+        RepairPanel.SetActive(true);
+        isRepairing = true;
+    }
+
+    public void StopRepairing()
+    {
+        //Destroy the current repair object, effectively removing it from the list of 
+        //repairables in the shipController. Thus "healing" it.
+
+        //Destroy the parent obj.
+        //first remove it from the shipController list.
+        shipController.damageDecals.Remove(currentRepairObj.transform.parent.gameObject);
+        //Then destroy the parent obj of the damage decal.
+        Destroy(currentRepairObj.transform.parent.gameObject); currentRepairObj = null;
+        //disable repair panel so the minigame ends.
+        RepairPanel.SetActive(false);
+        //set isRepairing to false.
+        isRepairing = false;
     }
 }
