@@ -155,6 +155,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    //rb.linearVelocity = moveVector;
                     rb.AddForce(moveVector);
                 }
 

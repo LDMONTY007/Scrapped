@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
@@ -96,6 +98,8 @@ public class ShipController : MonoBehaviour
             rb.MoveRotation(camRotation);
     }
 
+
+
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.relativeVelocity.magnitude);
@@ -106,6 +110,16 @@ public class ShipController : MonoBehaviour
         //Also Make sure to keep a list of these objects.
         if (!collision.collider.CompareTag("Player") && collision.relativeVelocity.magnitude >= 1)
         {
+            //check that we don't stack a repairable on top of another repairable.
+            foreach (ContactPoint c in collision.contacts)
+            {
+                if (c.thisCollider.CompareTag("Repairable"))
+                {
+                    //Do not instantiate a repairable if the colliding object
+                    //is a repairable.
+                    return;
+                }
+            }
             GameObject go = Instantiate(damagePrefab, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal), transform);
             go.transform.localScale = new Vector3(go.transform.localScale.x / transform.localScale.x, go.transform.localScale.y / transform.localScale.y, go.transform.localScale.z / transform.localScale.z);
 
