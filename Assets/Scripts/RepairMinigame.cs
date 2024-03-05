@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,7 +6,12 @@ public class RepairMinigame : MonoBehaviour
 {
     public Slider slider;
 
-    float totalTime = 1f;
+    public Material sliderMaterial;
+
+    public float leftBound = 0.45f;
+    public float rightBound = 0.55f;
+
+    public float totalTime = 1f;
     float currentTime = 0f;
     float currentSliderValue = 0f;
     bool doReverse = false;
@@ -23,7 +29,7 @@ public class RepairMinigame : MonoBehaviour
 
         if (!doReverse)
         {
-            if (currentTime > 0.99)
+            if (currentSliderValue > 0.99)
             {
                 currentSliderValue = 1f;
                 doReverse = true;
@@ -37,7 +43,7 @@ public class RepairMinigame : MonoBehaviour
         {
             //inverse the time increment so that we are decreasing
             timeIncrement *= -1f;
-            if (currentTime < 0.01)
+            if (currentSliderValue < 0.01)
             {
                 currentSliderValue = 0f;
                 doReverse = false;
@@ -51,5 +57,24 @@ public class RepairMinigame : MonoBehaviour
 
         slider.value = currentSliderValue;
         currentTime += timeIncrement;
+
+
+        if (Input.GetKeyDown(KeyCode.H) && 0.45f <= currentSliderValue && currentSliderValue <= 0.55f)
+        {
+            StartCoroutine(ColorDelay());
+        }
+    }
+
+    public IEnumerator ColorDelay()
+    {
+        //make the color cyan for 0.5f seconds.
+        float time = 0.5f;
+        while (time > 0)
+        {
+            sliderMaterial.SetColor("_LineColor", Color.cyan);
+            time -= Time.deltaTime;
+            yield return null;
+        }
+        sliderMaterial.SetColor("_LineColor", Color.red);
     }
 }
