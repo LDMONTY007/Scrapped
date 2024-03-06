@@ -108,7 +108,7 @@ public class ShipController : MonoBehaviour
         //get hit normal of the collision and spawn
         //the "Damage" decal on that position using Quaternion.lookRotation to look at the direction of the normal.
         //Also Make sure to keep a list of these objects.
-        if (!collision.collider.CompareTag("Player") && collision.relativeVelocity.magnitude >= 1)
+        if (!collision.collider.CompareTag("Player") && !collision.collider.CompareTag("NoDamage") && collision.relativeVelocity.magnitude >= 1)
         {
             //check that we don't stack a repairable on top of another repairable.
             foreach (ContactPoint c in collision.contacts)
