@@ -71,7 +71,7 @@ public class ShipController : MonoBehaviour
 
         //if you get 10 damages you die.
         health = 100f - (damageDecals.Count * 10);
-        hullIntegrityText.text = "Hull Integrity: " + health;
+        hullIntegrityText.text = "Hull Integrity: " + health.ToString("F0");
     }
 
     private void FixedUpdate()

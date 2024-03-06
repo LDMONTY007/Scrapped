@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     private float _oxygen = 100f;
+
+    bool isOxygenated = false;
+
+    public float oxygenIncrement = 1f;
+    public float oxygenHealTimeIncrement = 0.1f;
+
+    public float oxygenLossIncrement = 1f;
+    public float oxygenLossTimeIncrement = 0.1f;
 
     public ShipController shipController;
     public GameObject playerUI;
@@ -18,6 +27,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public GameObject cam;
     public TextMeshProUGUI oxygenText;
+    public Slider oxygenSlider;
     Vector3 input;
     Vector3 moveVector;
 
@@ -131,10 +141,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-            oxygenText.text = "O<sub>2</sub>:" + oxygen; 
+            oxygenText.text = string.Format("O<sub>2</sub>:" + (oxygen).ToString("F0")); 
+            oxygenSlider.value = oxygen;
         }
 
-        
     }
 
     private void FixedUpdate()
@@ -181,12 +191,50 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(collision.relativeVelocity.magnitude);
         if (collision.relativeVelocity.magnitude >= 1)
         {
             oxygen -= collision.relativeVelocity.magnitude * 0.75f;
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Oxygenated"))
+        {
+            isOxygenated = true;
+            //Start regaining oxygen
+            StartCoroutine(OxygenateCoroutine());
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Oxygenated"))
+        {
+            isOxygenated = false;
+            //Start losing oxygen.
+            StartCoroutine(OxygenLossCoroutine());
+        }
+    }
+
+    public IEnumerator OxygenateCoroutine()
+    {
+        while (isOxygenated)
+        {
+            oxygen += oxygenIncrement;
+            yield return new WaitForSeconds(oxygenHealTimeIncrement);
+        }
+    }
+
+    public IEnumerator OxygenLossCoroutine()
+    {
+        while (!isOxygenated)
+        {
+            oxygen -= oxygenLossIncrement;
+            yield return new WaitForSeconds(oxygenLossTimeIncrement);
         }
     }
 

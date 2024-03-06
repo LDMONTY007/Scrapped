@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Repairable
   - NoDamage
+  - Oxygenated
   layers:
   - Default
   - TransparentFX
