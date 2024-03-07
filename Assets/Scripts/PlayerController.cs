@@ -164,48 +164,14 @@ public class PlayerController : MonoBehaviour
     {
         //int mask = LayerMask.GetMask("Interactible");
 
-        if (Physics.SphereCast(cam.transform.position, GetComponent<Collider>().bounds.size.y / 2,cam.transform.forward, out RaycastHit hitInfo, focusDist, playerMask))
+        if (Physics.SphereCast(cam.transform.position, GetComponent<Collider>().bounds.size.y / 4f,cam.transform.forward, out RaycastHit hitInfo, focusDist, playerMask))
         {
-            //make sure the object is visible in the camera before
-            //we say to focus on it.
-            if (IsOnScreen(hitInfo.transform.gameObject))
+            IInteractible interactible = hitInfo.collider.GetComponent<IInteractible>();
+            if (Input.GetKeyDown(KeyCode.R) && hitInfo.distance <= interactionDist && interactible != null)
             {
-                IInteractible interactible = hitInfo.collider.GetComponent<IInteractible>();
-                if (interactible != null)
-                {
-                    //Only do OnFocus/OnLostFocus when we are not looking at 
-                    //the same object. 
-                    if (currentInteractible != interactible)
-                    {
-                        if (currentInteractible != null)
-                        {
-                            //tell it we are no longer focusing on it.
-                            currentInteractible.OnLostFocus(this);
-                            currentInteractible = null;
-                        }
-                        currentInteractible = interactible;
-                        currentInteractible.OnFocus(this);
-                    }
-                    //If we press to interact and the distance doesn't
-                    //exceed the interaction distance then tell the object
-                    //we interacted with it.
-                    if (Input.GetKeyDown(KeyCode.R) && hitInfo.distance <= interactionDist)
-                    {
-                        //tell the interactible we are interacting with it.
-                        currentInteractible.OnInteract(this);
-                    }
-                }
-                else if (currentInteractible != null)
-                {
-                    currentInteractible.OnLostFocus(this);
-                    currentInteractible = null;
-                }
+                //tell the interactible we are interacting with it.
+                interactible.OnInteract(this);
             }
-        }
-        else if (currentInteractible != null)
-        {
-            currentInteractible.OnLostFocus(this);
-            currentInteractible = null;
         }
     }
 

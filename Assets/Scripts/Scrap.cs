@@ -43,13 +43,13 @@ public class Scrap : MonoBehaviour, IInteractible
     {
         float currentTime = 0f;
         Vector3 startPos = transform.position;
-        while (currentTime != totalTime)
+        while (currentTime < totalTime)
         {
             if (currentTime >= totalTime - 0.01f)
             {
                 currentTime = totalTime;
             }
-            transform.Translate(Vector3.Lerp(startPos, playerTransform.position, currentTime / totalTime));
+            transform.position = (Vector3.Lerp(startPos, playerTransform.position, currentTime / totalTime));
             currentTime += Time.deltaTime;
             yield return null;
         }
