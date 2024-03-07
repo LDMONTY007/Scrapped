@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private GameObject currentRepairObj;
 
+    public PauseMenu pauseMenu;
+
     public float oxygen { get { return _oxygen; } set { _oxygen = Mathf.Clamp(value, 0f, 100f); } }
 
     Rigidbody rb;
@@ -89,6 +91,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.Pause();
+        }
+
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (isControllingShip)
