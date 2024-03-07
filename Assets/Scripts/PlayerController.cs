@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     private float _oxygen = 100f;
 
+    private int _scrapCount = 0;
+    public int scrapCount { get{ return _scrapCount; } set{ _scrapCount = Mathf.Clamp(value, 0, 99); } }
+
     bool isOxygenated = false;
 
     public float oxygenIncrement = 1f;
@@ -61,6 +64,14 @@ public class PlayerController : MonoBehaviour
 
     //Get a mask that includes every layer other than the player layer.
     int playerMask;
+
+    //the interactible that was last looked at,
+    //used to tell the interactible when we've stopped looking at it.
+    private IInteractible currentInteractible;
+
+    [Header("Interactible Parameters")]
+    public float interactionDist = 5f;
+    public float focusDist = 20f;
 
     private void Awake()
     {
@@ -136,6 +147,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
+                HandleInteraction();
+
                 #endregion
             }
 
@@ -145,6 +158,74 @@ public class PlayerController : MonoBehaviour
             oxygenSlider.value = oxygen;
         }
 
+    }
+
+    private void HandleInteraction()
+    {
+        //int mask = LayerMask.GetMask("Interactible");
+
+        if (Physics.SphereCast(cam.transform.position, GetComponent<Collider>().bounds.size.y / 2,cam.transform.forward, out RaycastHit hitInfo, focusDist, playerMask))
+        {
+            //make sure the object is visible in the camera before
+            //we say to focus on it.
+            if (IsOnScreen(hitInfo.transform.gameObject))
+            {
+                IInteractible interactible = hitInfo.collider.GetComponent<IInteractible>();
+                if (interactible != null)
+                {
+                    //Only do OnFocus/OnLostFocus when we are not looking at 
+                    //the same object. 
+                    if (currentInteractible != interactible)
+                    {
+                        if (currentInteractible != null)
+                        {
+                            //tell it we are no longer focusing on it.
+                            currentInteractible.OnLostFocus(this);
+                            currentInteractible = null;
+                        }
+                        currentInteractible = interactible;
+                        currentInteractible.OnFocus(this);
+                    }
+                    //If we press to interact and the distance doesn't
+                    //exceed the interaction distance then tell the object
+                    //we interacted with it.
+                    if (Input.GetKeyDown(KeyCode.R) && hitInfo.distance <= interactionDist)
+                    {
+                        //tell the interactible we are interacting with it.
+                        currentInteractible.OnInteract(this);
+                    }
+                }
+                else if (currentInteractible != null)
+                {
+                    currentInteractible.OnLostFocus(this);
+                    currentInteractible = null;
+                }
+            }
+        }
+        else if (currentInteractible != null)
+        {
+            currentInteractible.OnLostFocus(this);
+            currentInteractible = null;
+        }
+    }
+
+
+    //https://forum.unity.com/threads/check-if-gameobject-in-visible-on-screen.424586/
+    public bool IsOnScreen(GameObject g)
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        bool onScreen = screenPos.x > 0f && screenPos.x < Screen.width && screenPos.y > 0f && screenPos.y < Screen.height;
+
+        if (onScreen && g.GetComponent<Renderer>().isVisible)
+        {
+            //Visible
+            return true;
+        }
+        else
+        {
+            //NotVisible
+            return false;
+        }
     }
 
     private void FixedUpdate()

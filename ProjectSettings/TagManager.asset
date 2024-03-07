@@ -7,14 +7,15 @@ TagManager:
   - Repairable
   - NoDamage
   - Oxygenated
+  - Gem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Interactible
   - 
   - 
   - 
