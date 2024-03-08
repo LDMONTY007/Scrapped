@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float oxygenLossIncrement = 1f;
     public float oxygenLossTimeIncrement = 0.1f;
 
+    public List<Light> lights = new List<Light>();  
     public ShipController shipController;
     public GameObject playerUI;
     public GameObject ShipUI;
@@ -261,6 +262,13 @@ public class PlayerController : MonoBehaviour
             isOxygenated = true;
             //Start regaining oxygen
             StartCoroutine(OxygenateCoroutine());
+            if (!isControllingShip)
+            {
+                foreach (Light l in lights)
+                {
+                    l.enabled = false;
+                }
+            }
         }
     }
 
@@ -271,6 +279,13 @@ public class PlayerController : MonoBehaviour
             isOxygenated = false;
             //Start losing oxygen.
             StartCoroutine(OxygenLossCoroutine());
+            if (!isControllingShip)
+            {
+                foreach (Light l in lights)
+                {
+                    l.enabled = true;
+                }
+            }
         }
     }
 
@@ -299,12 +314,20 @@ public class PlayerController : MonoBehaviour
         //deactivate our cam so it switches to the ship cam.
         //In the future make it so that we render from a different cam
         //to a render texture that is displayed on a screen in the ship.
-        cam.SetActive(false);
+        //cam.SetActive(false);
         shipController.UnfreezeShip();
         //Lock the player to the ship.
         shipController.fixedJoint.connectedBody = rb;
         ShipUI.SetActive(true);
         playerUI.SetActive(false);
+        if (!isOxygenated)
+        {
+            foreach (Light l in lights)
+            {
+                l.enabled = false;
+            }
+        }
+        
     }
 
     public void StopControllingShip()
@@ -314,12 +337,20 @@ public class PlayerController : MonoBehaviour
         //activate our cam so it switches to the player cam.
         //In the future make it so that we render from a different cam
         //to a render texture that is displayed on a screen in the ship.
-        cam.SetActive(true);
+        //cam.SetActive(true);
         shipController.FreezeShip();
         //unlock the player from the ship.
         shipController.fixedJoint.connectedBody = null;
         ShipUI.SetActive(false);
         playerUI.SetActive(true);
+
+        if (!isOxygenated)
+        {
+            foreach (Light l in lights)
+            {
+                l.enabled = true;
+            }
+        }
     }
 
     //https://stackoverflow.com/questions/1628386/normalise-orientation-between-0-and-360

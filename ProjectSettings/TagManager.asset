@@ -8,6 +8,7 @@ TagManager:
   - NoDamage
   - Oxygenated
   - Gem
+  - Waypoint
   layers:
   - Default
   - TransparentFX
