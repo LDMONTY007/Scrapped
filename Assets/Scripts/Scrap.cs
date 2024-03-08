@@ -16,7 +16,7 @@ public class Scrap : MonoBehaviour, IInteractible
     public void OnInteract(PlayerController p)
     {
         Debug.Log("On Interact!");
-        p.scrapCount++;
+        p.scrapCount += 3;
         StartCoroutine(PickupCoroutine(1f, p.transform));
     }
 

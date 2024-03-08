@@ -79,10 +79,23 @@ public class RepairMinigame : MonoBehaviour
         currentTime += timeIncrement;
 
 
-        if (Input.GetKeyDown(KeyCode.R) && RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            repairCount++;
-            StartCoroutine(ColorDelay());
+            playerController.scrapCount--;
+            if (RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
+            {
+                repairCount++;
+                if (playerController.scrapCount <= 0)
+                {
+                    //if we are out of scrap stop repairing.
+                    playerController.StopRepairing();
+                }
+                else
+                {
+                    StartCoroutine(ColorDelay());
+                }
+            }
+            
         }
 
         /*if (Input.GetKeyDown(KeyCode.H) && 0.45f <= currentSliderValue && currentSliderValue <= 0.55f)

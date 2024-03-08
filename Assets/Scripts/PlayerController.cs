@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -19,6 +21,10 @@ public class PlayerController : MonoBehaviour
     public float oxygenLossIncrement = 1f;
     public float oxygenLossTimeIncrement = 0.1f;
 
+    public FixedJoint fixedJoint; 
+
+    public TextGradient promptTextGradient;
+    public TextMeshProUGUI promptText;
     public List<Light> lights = new List<Light>();  
     public ShipController shipController;
     public GameObject playerUI;
@@ -33,10 +39,12 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     public GameObject cam;
     public TextMeshProUGUI oxygenText;
+    public TextMeshProUGUI scrapText;
     public Slider oxygenSlider;
     Vector3 input;
     Vector3 moveVector;
 
+    public Transform playerControlPos;
     public GameObject RepairPanel;
 
     Quaternion camRotation;
@@ -97,8 +105,20 @@ public class PlayerController : MonoBehaviour
             pauseMenu.Pause();
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        RaycastHit[] hits = Physics.RaycastAll(cam.transform.position, cam.transform.forward, 10f, playerMask);
+
+        bool didHitConsole = false;
+        foreach (RaycastHit hit in hits)
         {
+            if (hit.collider.CompareTag("ShipControls"))
+            {
+                didHitConsole = true; break;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && didHitConsole || Input.GetKeyDown(KeyCode.F) && isControllingShip)
+        {
+            Debug.Log("HERE");
             if (isControllingShip)
             {
                 StopControllingShip();
@@ -107,6 +127,7 @@ public class PlayerController : MonoBehaviour
             {
                 StartControllingShip();
             }
+
         }
 
         if (!isControllingShip)
@@ -151,7 +172,16 @@ public class PlayerController : MonoBehaviour
                 {
                     if (hitInfo.collider.CompareTag("Repairable"))
                     {
-                        StartRepairing(hitInfo.collider.gameObject);
+                        if (scrapCount > 0)
+                        {
+                            StartRepairing(hitInfo.collider.gameObject);
+                        }
+                        else
+                        {
+                            promptText.gameObject.SetActive(true);
+                            promptTextGradient.StartAnimatingGradient();
+                            promptText.text = "Out of\nScrap";
+                        }
                     }
                 }
 
@@ -162,7 +192,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-            oxygenText.text = string.Format("O<sub>2</sub>:" + (oxygen).ToString("F0")); 
+            oxygenText.text = string.Format("O<sub>2</sub>:" + (oxygen).ToString("F0"));
+            scrapText.text = "Scrap:" + scrapCount;
             oxygenSlider.value = oxygen;
         }
 
@@ -309,6 +340,12 @@ public class PlayerController : MonoBehaviour
 
     public void StartControllingShip()
     {
+        //Make the player's position be
+        //at the control console.
+        //rb.MovePosition(shipController.transform.TransformPoint(playerControlPos.position));
+        //rb.position = shipController.transform.TransformPoint(playerControlPos.localPosition);
+        rb.rotation = shipController.transform.rotation;
+
         isControllingShip = true;
         shipController.enabled = true;
         //deactivate our cam so it switches to the ship cam.
@@ -317,7 +354,13 @@ public class PlayerController : MonoBehaviour
         //cam.SetActive(false);
         shipController.UnfreezeShip();
         //Lock the player to the ship.
-        shipController.fixedJoint.connectedBody = rb;
+        //shipController.fixedJoint.anchor = playerControlPos.localPosition;
+        //shipController.fixedJoint.connectedAnchor = playerControlPos.localPosition;
+        transform.position = shipController.transform.TransformPoint(playerControlPos.localPosition);
+        fixedJoint = gameObject.AddComponent<FixedJoint>();
+        fixedJoint.connectedBody = shipController.rb;
+        //fixedJoint.connectedAnchor = Vector3.zero;
+        //fixedJoint.anchor = playerControlPos.localPosition;
         ShipUI.SetActive(true);
         playerUI.SetActive(false);
         if (!isOxygenated)
@@ -340,7 +383,8 @@ public class PlayerController : MonoBehaviour
         //cam.SetActive(true);
         shipController.FreezeShip();
         //unlock the player from the ship.
-        shipController.fixedJoint.connectedBody = null;
+        Destroy(fixedJoint);
+        fixedJoint = null;
         ShipUI.SetActive(false);
         playerUI.SetActive(true);
 

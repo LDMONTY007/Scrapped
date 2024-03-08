@@ -13,7 +13,8 @@ public class ShipController : MonoBehaviour
 
     [HideInInspector]
     public FixedJoint fixedJoint;
-    Rigidbody rb;
+    [HideInInspector]
+    public Rigidbody rb;
     public Camera cam;
     Vector3 input;
     Vector3 moveVector;

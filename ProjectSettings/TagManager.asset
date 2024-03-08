@@ -9,6 +9,7 @@ TagManager:
   - Oxygenated
   - Gem
   - Waypoint
+  - ShipControls
   layers:
   - Default
   - TransparentFX

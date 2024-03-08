@@ -2,16 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 //https://forum.unity.com/threads/progress-bar-slider-gradient-fill.706544/
 
-[RequireComponent(typeof(Image))]
-public class ImageGradient : MonoBehaviour
+[RequireComponent(typeof(TextMeshProUGUI))]
+public class TextGradient : MonoBehaviour
 {
     public bool manuallyAssignFields = false;
 
     [SerializeField] private Gradient _gradient = null;
-    [SerializeField] private Image _image = null;
+    [SerializeField] private TextMeshProUGUI _text = null;
     public float totalTime = 1f;
     private float _currentTime = 0f;
     public float currentTime { get { return _currentTime; } set { _currentTime = Mathf.Clamp(value, 0f, totalTime); } }
@@ -22,7 +23,7 @@ public class ImageGradient : MonoBehaviour
     {
         if (!manuallyAssignFields)
         {
-            _image = GetComponent<Image>();
+            _text = GetComponent<TextMeshProUGUI>();
         }
     }
 
@@ -45,7 +46,7 @@ public class ImageGradient : MonoBehaviour
             {
                 currentTime = totalTime;
             }
-            _image.color = _gradient.Evaluate(currentTime / totalTime);
+            _text.color = _gradient.Evaluate(currentTime / totalTime);
             currentTime += Time.deltaTime;
             yield return null;
         }
