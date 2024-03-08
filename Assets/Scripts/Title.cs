@@ -19,6 +19,14 @@ public class Title : MonoBehaviour
 
     public void LoadScene(string scene)
     {
+        //if the game was paused 
+        //then swap over to unpaused
+        //by setting time scale to 1.
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+        }
+        Debug.Log("LOADING SCENE");
         SceneManager.LoadScene(scene);
     }
 

@@ -24,6 +24,7 @@ public class ImageGradient : MonoBehaviour
         {
             _image = GetComponent<Image>();
         }
+        //currentTime = 0f;
     }
 
     private void Update()
@@ -33,16 +34,22 @@ public class ImageGradient : MonoBehaviour
 
     public void StartAnimatingGradient()
     {
+        Debug.Log("START ANIMATING GRADIENT");
         StartCoroutine(AnimateGradientCoroutine());
     }
 
     //just animates from one end of the gradient to the other end.
     public IEnumerator AnimateGradientCoroutine()
     {
+        Debug.Log("ANIMATE COROUTINE");
+        Debug.Log(currentTime + " " + totalTime);
         while (currentTime < totalTime)
         {
+            Debug.Log("ANIMATE COROUTINE 1");
+            Debug.Log(currentTime + " " + totalTime);
             if (currentTime >= totalTime - 0.01f)
             {
+                Debug.Log("ANIMATE COROUTINE 2");
                 currentTime = totalTime;
             }
             _image.color = _gradient.Evaluate(currentTime / totalTime);
