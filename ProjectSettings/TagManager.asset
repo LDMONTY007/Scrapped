@@ -10,6 +10,7 @@ TagManager:
   - Gem
   - Waypoint
   - ShipControls
+  - Beacon
   layers:
   - Default
   - TransparentFX
