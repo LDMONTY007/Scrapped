@@ -7,6 +7,12 @@ using UnityEngine.UI;
 //Gotten from here:https://forum.unity.com/threads/gui-markers-waypoints.477084/
 public class WaypointDrawer : MonoBehaviour
 {
+
+    public bool useProximity = true;
+    public float proxDistance = 15f;
+
+    public Color waypointColor = Color.cyan;
+
     public List<string> tags = new List<string>();
 
     //Note for some reason in order to draw anything on the UI
@@ -78,9 +84,27 @@ public class WaypointDrawer : MonoBehaviour
             //if the waypoint is not behind the camera render it in the GUI.
             if (waypointLoc[i].z > 0)
             {
-                GUI.color = Color.cyan;
-                GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
-                GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                if (useProximity)
+                {
+
+                    Debug.Log("Player:" + playerLoc.position + "Waypoint:" + waypoints[i].transform.position + "Dist:" + Vector3.Distance(playerLoc.position, waypoints[i].transform.position));
+                    if (Vector3.Distance(playerLoc.position, waypoints[i].transform.position) <= proxDistance)
+                    {
+                        GUI.color = waypointColor;
+                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
+                        GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                    }
+                    else
+                    {
+                        //Don't show them.
+                    }
+                }
+                else
+                {
+                    GUI.color = waypointColor;
+                    GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
+                    GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                }
             }
         }
     }

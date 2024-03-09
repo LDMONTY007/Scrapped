@@ -945,6 +945,58 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81057190}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &85898132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85898134}
+  - component: {fileID: 85898133}
+  m_Layer: 0
+  m_Name: ProximityWaypointGUIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &85898133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85898132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 292eea4c18f4ba348a0fc06f4aedff4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useProximity: 1
+  proxDistance: 15
+  waypointColor: {r: 0, g: 1, b: 0.42318535, a: 1}
+  tags:
+  - Scrap
+  waypoints: []
+  playerLoc: {fileID: 1088865920}
+  waypointLoc: []
+--- !u!4 &85898134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85898132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &94684532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2609,11 +2661,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81de281895ff04345af5cb863f702261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scaleMin: 1
+  scaleMax: 10
   size: 100
   density: 100
   asteroidPrefabs:
   - {fileID: 285425443}
-  - {fileID: 791137896}
 --- !u!1 &282680043
 GameObject:
   m_ObjectHideFlags: 0
@@ -9685,6 +9738,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46dba19390e14c8419ebdfc8f153506c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Scrap
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9903,6 +9961,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 292eea4c18f4ba348a0fc06f4aedff4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useProximity: 0
+  proxDistance: 15
+  waypointColor: {r: 0, g: 1, b: 1, a: 1}
   tags:
   - Waypoint
   - Repairable
@@ -13362,3 +13423,4 @@ SceneRoots:
   - {fileID: 791137897}
   - {fileID: 752573535}
   - {fileID: 1453855045}
+  - {fileID: 85898134}

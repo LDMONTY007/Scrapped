@@ -5,6 +5,8 @@ using UnityEngine;
 public class AsteroidFieldGenerator : MonoBehaviour
 {
     //the length of the sides of the field. (it's a cube).
+    public int scaleMin;
+    public int scaleMax;
     public int size;
     public int density;
     //public int width;
@@ -33,16 +35,19 @@ public class AsteroidFieldGenerator : MonoBehaviour
             int prefabIndex = Random.Range(0, asteroidPrefabs.Count);
             Debug.Log(prefabIndex);
 
+            Vector3 rndScale = Vector3.one * Random.Range(scaleMin, scaleMax);
             Vector3 rndPos = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
             rndPos = transform.TransformPoint(rndPos * .5f);
             //Check if we are overlapping.
-            while (Physics.CheckBox(rndPos, asteroidColliders[prefabIndex].bounds.size))
+            while (Physics.CheckBox(rndPos, rndScale/*asteroidColliders[prefabIndex].bounds.size*/))
             {
                 rndPos = new Vector3(Random.Range(-size, size), Random.Range(-size, size), Random.Range(-size, size));
                 rndPos = transform.TransformPoint(rndPos * .5f);
             }
             //Instantiate random asteroid prefab at the already generated random position
-            asteroids.Add(Instantiate(asteroidPrefabs[prefabIndex], rndPos, Quaternion.identity));
+            GameObject go = Instantiate(asteroidPrefabs[prefabIndex], rndPos, Quaternion.identity);
+            go.transform.localScale = rndScale;
+            asteroids.Add(go);
         }
     }
 
