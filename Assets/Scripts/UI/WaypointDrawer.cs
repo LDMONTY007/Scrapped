@@ -70,10 +70,29 @@ public class WaypointDrawer : MonoBehaviour
 
     private void LateUpdate()
     {
+        List<int> indexesToRemove = new List<int>();
         for (int i = 0; i < waypoints.Count; i++)
         {
-            waypointLoc[i] = Camera.main.WorldToScreenPoint(waypoints[i].transform.position);
+            if (waypoints[i] != null && waypointLoc[i] != null)
+            {
+                waypointLoc[i] = Camera.main.WorldToScreenPoint(waypoints[i].transform.position);
+            }
+            else
+            {
+                //add the index that needs to be removed.
+                //We'll remove it after we're done with this loop.
+                indexesToRemove.Add(i);
+            }
+            
         }
+
+        //remove any null waypoints.
+        foreach (int i in indexesToRemove)
+        {
+            waypoints.RemoveAt(i);
+            waypointLoc.RemoveAt(i);
+        }
+
     }
 
     void OnGUI()
