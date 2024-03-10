@@ -52,7 +52,8 @@ public class PlayerController : MonoBehaviour
 
     public float maxSpeed = 20f;
     public float moveSpeed = 5f;
-    public float rotationSpeed = 5f;
+    public float mouseRotationSpeed = 250f;
+    public float rollRotationSpeed = 50f;
     public bool isControllingShip;
 
     //Shift slows the player down to zero.
@@ -66,7 +67,8 @@ public class PlayerController : MonoBehaviour
     //__I__
     //_JKL_
     //For rotation.
-    Vector3 camInput => new Vector3((Input.GetKey(KeyCode.J) ? 1 : 0) + (Input.GetKey(KeyCode.L) ? -1 : 0), (Input.GetKey(KeyCode.I) ? 1 : 0) + (Input.GetKey(KeyCode.K) ? -1 : 0), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
+    //Vector3 camInput => new Vector3((Input.GetKey(KeyCode.J) ? 1 : 0) + (Input.GetKey(KeyCode.L) ? -1 : 0), (Input.GetKey(KeyCode.I) ? 1 : 0) + (Input.GetKey(KeyCode.K) ? -1 : 0), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
+    Vector3 camInput => new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
 
 
     bool shouldAlignWithShip => Input.GetKey(KeyCode.G);
@@ -142,7 +144,8 @@ public class PlayerController : MonoBehaviour
                 //Rotation
                 if (!shouldAlignWithShip)
                 {
-                    camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.y, -camInput.x, camInput.z) * Time.deltaTime * rotationSpeed);
+                    camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.x * mouseRotationSpeed, camInput.y * mouseRotationSpeed, camInput.z * rollRotationSpeed) * Time.deltaTime);
+                    //camRotation = camRotation * Quaternion.Euler(new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotationSpeed);
                 }
                 else
                 {
@@ -162,7 +165,7 @@ public class PlayerController : MonoBehaviour
                     //direction = Vector3.ProjectOnPlane(direction, shipController.transform.up);
                     //transform.rotation = Quaternion.LookRotation(direction);
 
-                    camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * rotationSpeed);
+                    camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * mouseRotationSpeed/*rotationSpeed*/);
                 }
 
 
@@ -340,6 +343,9 @@ public class PlayerController : MonoBehaviour
 
     public void StartControllingShip()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         //Make the player's position be
         //at the control console.
         //rb.MovePosition(shipController.transform.TransformPoint(playerControlPos.position));
@@ -375,6 +381,8 @@ public class PlayerController : MonoBehaviour
 
     public void StopControllingShip()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         isControllingShip = false;
         shipController.enabled = false;
         //activate our cam so it switches to the player cam.

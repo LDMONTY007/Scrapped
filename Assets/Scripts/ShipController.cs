@@ -20,7 +20,10 @@ public class ShipController : MonoBehaviour
     Vector3 moveVector;
 
     public TextMeshProUGUI hullIntegrityText;
+    public TextMeshProUGUI speedText;
     public GameObject damagePrefab;
+
+
 
     Quaternion camRotation;
 
@@ -73,6 +76,8 @@ public class ShipController : MonoBehaviour
         //if you get 10 damages you die.
         health = 100f - (damageDecals.Count * 10);
         hullIntegrityText.text = "Hull Integrity: " + health.ToString("F0");
+
+        speedText.text = "Speed:" + (rb.linearVelocity.magnitude).ToString("F2") + "M/s";
     }
 
     private void FixedUpdate()
