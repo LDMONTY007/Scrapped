@@ -9,6 +9,8 @@ public class WaypointDrawer : MonoBehaviour
 {
 
     public bool useProximity = true;
+    public bool hideInProximity = false;
+    public bool hideDistance= false;
     public float proxDistance = 15f;
 
     public Color waypointColor = Color.cyan;
@@ -125,6 +127,29 @@ public class WaypointDrawer : MonoBehaviour
                         GUI.color = waypointColor;
                         GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
                         GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                        if (!hideDistance)
+                        {
+                            GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                        }
+
+                    }
+                    else
+                    {
+                        //Don't show them.
+                    }
+                }
+                else if (hideInProximity)
+                {
+                    //if they are inside the proximity range.
+                    if (!(Vector3.Distance(playerLoc.position, waypoints[i].transform.position) <= proxDistance))
+                    {
+                        GUI.color = waypointColor;
+                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
+                        GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                        if (!hideDistance)
+                        {
+                            GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                        }
                     }
                     else
                     {
@@ -136,6 +161,10 @@ public class WaypointDrawer : MonoBehaviour
                     GUI.color = waypointColor;
                     GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
                     GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                    if (!hideDistance)
+                    {
+                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                    }
                 }
             }
         }

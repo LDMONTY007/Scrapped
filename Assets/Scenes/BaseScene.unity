@@ -1125,6 +1125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useProximity: 1
+  hideInProximity: 0
+  hideDistance: 0
   proxDistance: 15
   waypointColor: {r: 0, g: 1, b: 0.42318535, a: 1}
   tags:
@@ -5114,7 +5116,7 @@ Transform:
   m_GameObject: {fileID: 379977094}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.084, y: 0, z: 0}
+  m_LocalPosition: {x: -0.087, y: 0.514, z: 1.285}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13074,13 +13076,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useProximity: 0
+  hideInProximity: 1
+  hideDistance: 0
   proxDistance: 15
   waypointColor: {r: 0, g: 1, b: 1, a: 1}
   tags:
   - Waypoint
   - Repairable
   waypoints: []
-  playerLoc: {fileID: 0}
+  playerLoc: {fileID: 1088865920}
   waypointLoc: []
 --- !u!1 &1506927060
 GameObject:
