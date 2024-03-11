@@ -27,6 +27,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
         if (isPaused)
         {
+            AudioListener.pause = true;
             Time.timeScale = 0f;
             pausePanel.SetActive(true);
             playerControlPanel.SetActive(true);
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
+            AudioListener.pause = false;
             Time.timeScale = 1f;
             pausePanel.SetActive(false);
             shipControlPanel.SetActive(false);

@@ -2,10 +2,18 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Scrap : MonoBehaviour, IInteractible
+public class Beacon : MonoBehaviour, IInteractible
 {
     UnityEvent OnInteractEvent;
 
+    public BeaconType beaconType;
+
+    public enum BeaconType
+    {
+        Zeus,
+        Apollyon,
+        Atlas
+    }
 
     //This will be unused for now.
     public void OnFocus(PlayerController p)
@@ -16,7 +24,21 @@ public class Scrap : MonoBehaviour, IInteractible
     public void OnInteract(PlayerController p)
     {
         Debug.Log("On Interact!");
-        p.scrapCount += 3;
+        //We should also notify the player that 
+        //we picked one up and play some audio 
+        //from the mission control.
+        switch (beaconType)
+        {
+            case BeaconType.Zeus:
+                p.hasZeusBeacon = true;
+                break;
+            case BeaconType.Apollyon:
+                p.hasApollyonBeacon = true;
+                break;
+            case BeaconType.Atlas: 
+                p.hasAtlasBeacon = true;
+                break;
+        }
         StartCoroutine(PickupCoroutine(1f, p.transform));
     }
 

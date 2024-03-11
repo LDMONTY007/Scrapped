@@ -8,6 +8,10 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool hasAtlasBeacon;
+    public bool hasApollyonBeacon;
+    public bool hasZeusBeacon;
+
     private float _oxygen = 100f;
 
     private int _scrapCount = 0;
