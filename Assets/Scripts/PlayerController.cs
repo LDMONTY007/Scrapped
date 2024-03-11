@@ -110,6 +110,11 @@ public class PlayerController : MonoBehaviour
     {
         StopControllingShip();
         camRotation = rb.rotation;
+
+        //init this stuff.
+        fwd = transform.forward;
+        up = transform.up;
+        right = transform.right;
     }
 
     // Update is called once per frame
@@ -157,8 +162,12 @@ public class PlayerController : MonoBehaviour
                 //Rotation
                 if (!shouldAlignWithShip)
                 {
-                    camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.x * mouseRotationSpeed, camInput.y * mouseRotationSpeed, camInput.z * rollRotationSpeed) * Time.deltaTime);
+                    //camRotation = camRotation * Quaternion.Euler(new Vector3(-camInput.x * mouseRotationSpeed, camInput.y * mouseRotationSpeed, camInput.z * rollRotationSpeed) * Time.deltaTime);
                     //camRotation = camRotation * Quaternion.Euler(new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * rotationSpeed);
+                    //Switch to using ship relative locomotion.
+                    up = transform.up;
+                    fwd = transform.forward;
+                    right = transform.right;
                 }
                 else
                 {
@@ -178,7 +187,11 @@ public class PlayerController : MonoBehaviour
                     //direction = Vector3.ProjectOnPlane(direction, shipController.transform.up);
                     //transform.rotation = Quaternion.LookRotation(direction);
 
-                    camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * mouseRotationSpeed/*rotationSpeed*/);
+                    //camRotation = shipController.transform.rotation * Quaternion.Euler(shipController.transform.up * -camInput.x * Time.deltaTime * mouseRotationSpeed/*rotationSpeed*/);
+                    //Switch to using ship relative locomotion.
+                    up = shipController.transform.up;
+                    fwd = shipController.transform.forward;
+                    right = shipController.transform.right;
                 }
 
 
@@ -253,6 +266,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!isControllingShip)
         {
+            //Switch to using player relative locomotion.
+            up = transform.up;
+            fwd = transform.forward;
+            right = transform.right;
+
             if (!isRepairing)
             {
                 if (shouldBrake)
@@ -287,7 +305,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             //Make rotation match the ship's rotation.
-            camRotation = shipController.transform.rotation;
+            //camRotation = shipController.transform.rotation;
             rb.MoveRotation(shipController.transform.rotation);
         }
         
@@ -479,10 +497,15 @@ public class PlayerController : MonoBehaviour
         {
             yield return waitForFixedUpdate;
 
-            //Combine all the rotations around their respective axes relative to the current directions
-            //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
-            Quaternion newRotation = Quaternion.AngleAxis(camInput.y, rb.transform.up) * Quaternion.AngleAxis(-camInput.x, rb.transform.right) * Quaternion.AngleAxis(camInput.z, rb.transform.forward);
-            rb.MoveRotation(newRotation * rb.rotation);
+            if (!isControllingShip)
+            {
+                //Combine all the rotations around their respective axes relative to the current directions
+                //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
+                Quaternion newRotation = Quaternion.AngleAxis(camInput.y, up) * Quaternion.AngleAxis(-camInput.x, right) * Quaternion.AngleAxis(camInput.z, fwd);
+                //NEW ROTATION MUST BE FIRST BECAUSE QUATERNION MULTIPLICATION IS NOT COMMUNICATIVE.
+                rb.MoveRotation(newRotation * rb.rotation);
+            }
+            
             
 
 
