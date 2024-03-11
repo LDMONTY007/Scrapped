@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
+    static ShipController instance;
+
     private float _health = 100f;
 
     public float health { get { return _health; } set { _health = Mathf.Clamp(value, 0f, 100f); } }
@@ -23,6 +25,7 @@ public class ShipController : MonoBehaviour
     public TextMeshProUGUI speedText;
     public GameObject damagePrefab;
 
+    public GameObject antenna; 
 
 
     Quaternion camRotation;
@@ -59,6 +62,7 @@ public class ShipController : MonoBehaviour
     void Start()
     {
         camRotation = rb.rotation;
+        instance = this;
     }
 
     // Update is called once per frame

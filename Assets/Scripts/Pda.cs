@@ -2,20 +2,15 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Beacon : MonoBehaviour, IInteractible
-{
-    public bool doRandomRotation = true;
 
+
+//I HAVE YET OT ACTUALLY CODE THE PDA.
+//I NEED TO DO SO BUT LATER.
+public class Pda : MonoBehaviour, IInteractible
+{
     public UnityEvent OnInteractEvent;
 
-    public BeaconType beaconType;
-
-    public enum BeaconType
-    {
-        Zeus,
-        Apollyon,
-        Atlas
-    }
+    public bool doRandomRotation = true;
 
     //This will be unused for now.
     public void OnFocus(PlayerController p)
@@ -26,23 +21,9 @@ public class Beacon : MonoBehaviour, IInteractible
     public void OnInteract(PlayerController p)
     {
         Debug.Log("On Interact!");
-        //We should also notify the player that 
-        //we picked one up and play some audio 
-        //from the mission control.
-        switch (beaconType)
-        {
-            case BeaconType.Zeus:
-                p.hasZeusBeacon = true;
-                break;
-            case BeaconType.Apollyon:
-                p.hasApollyonBeacon = true;
-                break;
-            case BeaconType.Atlas: 
-                p.hasAtlasBeacon = true;
-                break;
-        }
-        OnInteractEvent.Invoke();
+        //p.scrapCount += 3;
         StartCoroutine(PickupCoroutine(1f, p.transform));
+        OnInteractEvent.Invoke();   
     }
 
 
@@ -60,7 +41,6 @@ public class Beacon : MonoBehaviour, IInteractible
             //randomize rotation so it actually looks good.
             transform.rotation = Random.rotation;
         }
-
     }
 
     // Update is called once per frame

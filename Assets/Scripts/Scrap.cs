@@ -6,6 +6,7 @@ public class Scrap : MonoBehaviour, IInteractible
 {
     UnityEvent OnInteractEvent;
 
+    public bool doRandomRotation = true;
 
     //This will be unused for now.
     public void OnFocus(PlayerController p)
@@ -30,8 +31,11 @@ public class Scrap : MonoBehaviour, IInteractible
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //randomize rotation so it actually looks good.
-        transform.rotation = Random.rotation;
+        if (doRandomRotation)
+        {
+            //randomize rotation so it actually looks good.
+            transform.rotation = Random.rotation;
+        }
     }
 
     // Update is called once per frame

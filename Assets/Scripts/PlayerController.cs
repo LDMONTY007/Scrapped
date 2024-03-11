@@ -498,6 +498,7 @@ public class PlayerController : MonoBehaviour
                 //Combine all the rotations around their respective axes relative to the current directions
                 //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
                 Quaternion newRotation = Quaternion.AngleAxis(camInput.y, up) * Quaternion.AngleAxis(-camInput.x, right) * Quaternion.AngleAxis(camInput.z, fwd);
+                /*Quaternion newRotation = Quaternion.AngleAxis(camInput.y, transform.up) * Quaternion.AngleAxis(-camInput.x, transform.right) * Quaternion.AngleAxis(camInput.z, transform.forward);*/
 
                 if (shouldAlignWithShip)
                     newRotation = Quaternion.AngleAxis(camInput.y, transform.up);
@@ -526,7 +527,7 @@ public class PlayerController : MonoBehaviour
 
                 }
                 //NEW ROTATION MUST BE FIRST BECAUSE QUATERNION MULTIPLICATION IS NOT COMMUNICATIVE.
-                rb.MoveRotation(rb.rotation * newRotation);
+                rb.MoveRotation(newRotation * rb.rotation);
             }
             
             

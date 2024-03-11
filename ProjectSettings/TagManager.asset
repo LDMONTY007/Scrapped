@@ -12,6 +12,7 @@ TagManager:
   - ShipControls
   - Beacon
   - Scrap
+  - Pda
   layers:
   - Default
   - TransparentFX
