@@ -7,6 +7,15 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    //The directions we bind our rotation to. 
+    [HideInInspector]
+    public Vector3 right;
+    [HideInInspector]
+    public Vector3 up;
+    [HideInInspector]
+    public Vector3 fwd;
+
     public bool hasAtlasBeacon;
     public bool hasApollyonBeacon;
     public bool hasZeusBeacon;
@@ -93,6 +102,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerMask = ~LayerMask.GetMask("Player");
+        StartCoroutine(ExecuteAfterFixedUpdateCoroutine());
     }
 
     // Start is called before the first frame update
@@ -264,10 +274,10 @@ public class PlayerController : MonoBehaviour
                 //Clamp to max speed.
                 rb.linearVelocity = Vector3.ClampMagnitude(rb.linearVelocity, maxSpeed);
 
-                if (transform.rotation != camRotation)
+                /*if (transform.rotation != camRotation)
                 {
                     rb.MoveRotation(shipController.transform.rotation * camRotation);
-                }
+                }*/
             }
             else
             {
@@ -459,5 +469,23 @@ public class PlayerController : MonoBehaviour
         RepairPanel.SetActive(false);
         //set isRepairing to false.
         isRepairing = false;
+    }
+
+    //This is where I do rotation
+    IEnumerator ExecuteAfterFixedUpdateCoroutine()
+    {
+        YieldInstruction waitForFixedUpdate = new WaitForFixedUpdate();
+        while (true)
+        {
+            yield return waitForFixedUpdate;
+
+            //Combine all the rotations around their respective axes relative to the current directions
+            //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
+            Quaternion newRotation = Quaternion.AngleAxis(camInput.y, rb.transform.up) * Quaternion.AngleAxis(-camInput.x, rb.transform.right) * Quaternion.AngleAxis(camInput.z, rb.transform.forward);
+            rb.MoveRotation(newRotation * rb.rotation);
+            
+
+
+        }
     }
 }
