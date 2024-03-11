@@ -386,9 +386,7 @@ public class PlayerController : MonoBehaviour
         isControllingShip = true;
         shipController.enabled = true;
         //deactivate our cam so it switches to the ship cam.
-        //In the future make it so that we render from a different cam
-        //to a render texture that is displayed on a screen in the ship.
-        //cam.SetActive(false);
+        cam.SetActive(false);
         shipController.UnfreezeShip();
         //Lock the player to the ship.
         //shipController.fixedJoint.anchor = playerControlPos.localPosition;
@@ -416,10 +414,7 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
         isControllingShip = false;
         shipController.enabled = false;
-        //activate our cam so it switches to the player cam.
-        //In the future make it so that we render from a different cam
-        //to a render texture that is displayed on a screen in the ship.
-        //cam.SetActive(true);
+        cam.SetActive(true);
         shipController.FreezeShip();
         //unlock the player from the ship.
         Destroy(fixedJoint);
