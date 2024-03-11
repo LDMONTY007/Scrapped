@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -428,8 +427,9 @@ public class PlayerController : MonoBehaviour
         isRepairing = true;
     }
 
-    public void StopRepairing()
+    public void StopRepairingWin()
     {
+        
         //Destroy the current repair object, effectively removing it from the list of 
         //repairables in the shipController. Thus "healing" it.
 
@@ -438,6 +438,23 @@ public class PlayerController : MonoBehaviour
         shipController.damageDecals.Remove(currentRepairObj.transform.parent.gameObject);
         //Then destroy the parent obj of the damage decal.
         Destroy(currentRepairObj.transform.parent.gameObject); currentRepairObj = null;
+        //disable repair panel so the minigame ends.
+        RepairPanel.SetActive(false);
+        //set isRepairing to false.
+        isRepairing = false;
+    }
+
+    public void StopRepairingLose()
+    {
+
+        //Destroy the current repair object, effectively removing it from the list of 
+        //repairables in the shipController. Thus "healing" it.
+
+        //Destroy the parent obj.
+        //first remove it from the shipController list.
+        //shipController.damageDecals.Remove(currentRepairObj.transform.parent.gameObject);
+        //Then destroy the parent obj of the damage decal.
+        //Destroy(currentRepairObj.transform.parent.gameObject); currentRepairObj = null;
         //disable repair panel so the minigame ends.
         RepairPanel.SetActive(false);
         //set isRepairing to false.

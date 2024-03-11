@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Beacon : MonoBehaviour, IInteractible
 {
-    UnityEvent OnInteractEvent;
+    public UnityEvent OnInteractEvent;
 
     public BeaconType beaconType;
 
@@ -39,6 +39,7 @@ public class Beacon : MonoBehaviour, IInteractible
                 p.hasAtlasBeacon = true;
                 break;
         }
+        OnInteractEvent.Invoke();
         StartCoroutine(PickupCoroutine(1f, p.transform));
     }
 

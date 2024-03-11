@@ -4,6 +4,7 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
 
+    public PlayerController playerController;
     public GameObject pausePanel;
     public GameObject playerControlPanel;
     public GameObject shipControlPanel;
@@ -32,6 +33,14 @@ public class PauseMenu : MonoBehaviour
             pausePanel.SetActive(true);
             playerControlPanel.SetActive(true);
             shipControlPanel.SetActive(true);
+            if (playerController != null)
+            {
+                if (!playerController.isControllingShip)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                }
+            }
         }
         else
         {
@@ -40,6 +49,11 @@ public class PauseMenu : MonoBehaviour
             pausePanel.SetActive(false);
             shipControlPanel.SetActive(false);
             playerControlPanel.SetActive(false);
+            if (!playerController.isControllingShip)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 }

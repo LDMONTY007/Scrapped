@@ -1,29 +1,9 @@
 fileFormatVersion: 2
-guid: a40c4a5da723d1846b7b783a47d231f3
+guid: 642b9cbe872a92a4589fe49a7848a7ef
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: f0610b179429f5741a15662bfe578372, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Hull
-    second: {fileID: 2100000, guid: afa6c41a0a0b7994c8f6cd9c4fce679e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: a816f5b699eed7249ab0ae6936e70da9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: SolarPanel
-    second: {fileID: 2100000, guid: 185629cf358ae2343b5e2d5fad02d9a0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

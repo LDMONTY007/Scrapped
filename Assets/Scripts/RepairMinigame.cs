@@ -82,13 +82,18 @@ public class RepairMinigame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             playerController.scrapCount--;
+            if (playerController.scrapCount <= 0)
+            {
+                //if we are out of scrap stop repairing.
+                playerController.StopRepairingLose();
+            }
             if (RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
             {
                 repairCount++;
                 if (playerController.scrapCount <= 0)
                 {
                     //if we are out of scrap stop repairing.
-                    playerController.StopRepairing();
+                    playerController.StopRepairingLose();
                 }
                 else
                 {
@@ -145,7 +150,7 @@ public class RepairMinigame : MonoBehaviour
             //disable this object.
             //gameObject.SetActive(false);
             //Stop repairing.
-            playerController.StopRepairing();
+            playerController.StopRepairingWin();
             //StopCoroutine(ColorDelay());
         }
         else

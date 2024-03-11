@@ -51,6 +51,8 @@ public class WaypointDrawer : MonoBehaviour
             waypointLoc[i] = Camera.main.WorldToScreenPoint(waypoints[i].transform.position);
         }*/
 
+        VerifyWaypoints();
+
         //O(n^2) really inefficient way to get all the newly spawned tags.
         //I don't have time to design an interface for waypoints with a callback
         //to add them.
@@ -70,20 +72,32 @@ public class WaypointDrawer : MonoBehaviour
 
     private void LateUpdate()
     {
-        List<int> indexesToRemove = new List<int>();
+        VerifyWaypoints();
         for (int i = 0; i < waypoints.Count; i++)
         {
             if (waypoints[i] != null && waypointLoc[i] != null)
             {
                 waypointLoc[i] = Camera.main.WorldToScreenPoint(waypoints[i].transform.position);
             }
-            else
+            
+        }
+
+
+    }
+
+    public void VerifyWaypoints()
+    {
+        List<int> indexesToRemove = new List<int>();
+
+        for (int i = 0; i < waypoints.Count; i++)
+        {
+            if (waypoints[i] == null)
             {
                 //add the index that needs to be removed.
                 //We'll remove it after we're done with this loop.
                 indexesToRemove.Add(i);
             }
-            
+
         }
 
         //remove any null waypoints.
@@ -92,12 +106,11 @@ public class WaypointDrawer : MonoBehaviour
             waypoints.RemoveAt(i);
             waypointLoc.RemoveAt(i);
         }
-
     }
 
     void OnGUI()
     {
-
+        VerifyWaypoints() ;
         for (int i = 0; i < waypoints.Count; i++)
         {
             //if the waypoint is not behind the camera render it in the GUI.
