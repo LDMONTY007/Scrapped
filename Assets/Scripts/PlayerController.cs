@@ -499,11 +499,39 @@ public class PlayerController : MonoBehaviour
 
             if (!isControllingShip)
             {
+
                 //Combine all the rotations around their respective axes relative to the current directions
                 //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
                 Quaternion newRotation = Quaternion.AngleAxis(camInput.y, up) * Quaternion.AngleAxis(-camInput.x, right) * Quaternion.AngleAxis(camInput.z, fwd);
+
+                if (shouldAlignWithShip)
+                    newRotation = Quaternion.AngleAxis(camInput.y, transform.up);
+                camRotation *= newRotation;
+                if (shouldAlignWithShip)
+                {
+                    //SUPER CLOSE TO WORKING
+                    //The rotation required to get us from the 
+                    //Current rotation to looking at the ship. 
+                    //Quaternion wishRot = transform.rotation * newRotation;
+                    //This is the rotation we'd need to add to our current rotation to be at 
+                    //the ship's rotation. 
+                    Quaternion diff = shipController.transform.rotation * Quaternion.Inverse(transform.rotation);
+                    //The next line is the closest I can get to solving binding it to the proper axes.
+                    //Quaternion diff = (shipController.transform.rotation * newRotation) * Quaternion.Inverse(transform.rotation);
+                    //Quaternion diff = shipController.transform.rotation * Quaternion.Inverse(transform.rotation * Quaternion.Inverse(camRotation));
+                    //Quaternion diff = Quaternion.Inverse(transform.rotation * camRotation) * shipController.transform.rotation;
+                    //Quaternion diff2 = transform.rotation * Quaternion.Inverse(shipController.transform.rotation);
+
+                    /*                    Quaternion zRot = Quaternion.AngleAxis(camInput.z, fwd);
+                                        newRotation = Quaternion.AngleAxis(camInput.y, up) * Quaternion.AngleAxis(-camInput.x, right);
+                                        Quaternion tempRot = newRotation * rb.rotation;*/
+                    /*newRotation = Quaternion.AngleAxis(camInput.y, up) * Quaternion.AngleAxis(-camInput.x, right) * Quaternion.AngleAxis(Quaternion.Angle(shipController.transform.rotation., ))*/
+                    newRotation = diff/* * wishRot*/;
+
+
+                }
                 //NEW ROTATION MUST BE FIRST BECAUSE QUATERNION MULTIPLICATION IS NOT COMMUNICATIVE.
-                rb.MoveRotation(newRotation * rb.rotation);
+                rb.MoveRotation(rb.rotation * newRotation);
             }
             
             

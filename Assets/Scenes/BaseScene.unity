@@ -10135,6 +10135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22909dd026c9a8943a2318a1de5ebaee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  right: {x: 0, y: 0, z: 0}
+  up: {x: 0, y: 0, z: 0}
+  fwd: {x: 0, y: 0, z: 0}
   hasAtlasBeacon: 0
   hasApollyonBeacon: 0
   hasZeusBeacon: 0
