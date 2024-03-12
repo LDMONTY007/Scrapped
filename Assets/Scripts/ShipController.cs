@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,6 +8,9 @@ using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
+
+    public List<AudioClip> clangClips = new List<AudioClip>();
+
     public static ShipController instance;
 
     private float _health = 100f;
@@ -52,10 +56,14 @@ public class ShipController : MonoBehaviour
     Vector3 camInput => new Vector3((Input.GetKey(KeyCode.J) ? 1 : 0) + (Input.GetKey(KeyCode.L) ? -1 : 0), (Input.GetKey(KeyCode.I) ? 1 : 0) + (Input.GetKey(KeyCode.K) ? -1 : 0), (Input.GetKey(KeyCode.Q) ? 1 : 0) + (Input.GetKey(KeyCode.E) ? -1 : 0));
 
 
+    CinemachineImpulseSource impulseSource;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         fixedJoint = GetComponent<FixedJoint>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -63,6 +71,8 @@ public class ShipController : MonoBehaviour
     {
         camRotation = rb.rotation;
         instance = this;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
     }
 
     // Update is called once per frame
@@ -130,6 +140,9 @@ public class ShipController : MonoBehaviour
                     return;
                 }
             }
+            //Make camera shake.
+            impulseSource.GenerateImpulseAtPositionWithVelocity(collision.contacts[0].point, collision.relativeVelocity);
+            audioSource.PlayOneShot(clangClips[Random.Range(0, clangClips.Count)]);
             GameObject go = Instantiate(damagePrefab, collision.contacts[0].point, Quaternion.LookRotation(collision.contacts[0].normal), transform);
             go.transform.localScale = new Vector3(go.transform.localScale.x / transform.localScale.x, go.transform.localScale.y / transform.localScale.y, go.transform.localScale.z / transform.localScale.z);
 

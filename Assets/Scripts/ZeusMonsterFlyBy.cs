@@ -1,8 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ZeusMonsterFlyBy : MonoBehaviour
 {
+
+    public UnityEvent OnMonsterBumpEvent;
+
     AudioSource audioSource;
     public AudioClip AudioClip;
 
@@ -79,6 +83,8 @@ public class ZeusMonsterFlyBy : MonoBehaviour
             {
                 //Play the monster clip
                 audioSource.PlayOneShot(metalClang);
+                OnMonsterBumpEvent.Invoke();
+                //PlayerController.instance.DoCameraShake(0.1f, 0.5f, 0.5f);
                 didPlayClip = true;
             }
             curMonster.transform.position = (Vector3.Lerp(startPos, end.position, currentTime / totalTime));
@@ -97,7 +103,7 @@ public class ZeusMonsterFlyBy : MonoBehaviour
         }
 
         audioSource.PlayOneShot(metalClang2);
-
+        OnMonsterBumpEvent.Invoke();
         float currentTime2 = 0f;
         float totalTime2 = 1f;
         while (currentTime2 < totalTime2)
@@ -115,9 +121,12 @@ public class ZeusMonsterFlyBy : MonoBehaviour
             yield return null;
         }
         audioSource.PlayOneShot(metalClang3);
-
+        OnMonsterBumpEvent.Invoke();
         //Delete the antenna from the top of the ship.
         Destroy(ShipController.instance.antenna);
         // Destroy(gameObject, 0.01f);
     }
+
+
+    
 }

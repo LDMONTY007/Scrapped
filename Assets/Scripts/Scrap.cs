@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class Scrap : MonoBehaviour, IInteractible
 {
-    UnityEvent OnInteractEvent;
+    public UnityEvent OnInteractEvent;
 
     public bool doRandomRotation = true;
 
@@ -18,6 +18,7 @@ public class Scrap : MonoBehaviour, IInteractible
     {
         Debug.Log("On Interact!");
         p.scrapCount += 3;
+        OnInteractEvent.Invoke();
         StartCoroutine(PickupCoroutine(1f, p.transform));
     }
 

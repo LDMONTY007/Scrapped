@@ -1,12 +1,16 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+
+    public static PlayerController instance;
 
     //The directions we bind our rotation to. 
     [HideInInspector]
@@ -50,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody rb;
     public GameObject cam;
+    public CinemachineBasicMultiChannelPerlin noise;
     public TextMeshProUGUI oxygenText;
     public TextMeshProUGUI scrapText;
     public Slider oxygenSlider;
@@ -103,6 +108,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerMask = ~LayerMask.GetMask("Player");
         StartCoroutine(ExecuteAfterFixedUpdateCoroutine());
+        instance = this;
+        noise = cam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Start is called before the first frame update
@@ -225,6 +232,34 @@ public class PlayerController : MonoBehaviour
             scrapText.text = "Scrap:" + scrapCount;
             oxygenSlider.value = oxygen;
         }
+
+    }
+
+    public void TestCameraShake()
+    {
+        DoCameraShake(0.5f, 0.5f, 0.5f);
+    }
+    public void DoCameraShake(float time, float amplitude, float frequency)
+    {
+        StartCoroutine(CameraShakeCoroutine(time, amplitude, frequency));
+    }
+
+
+    public IEnumerator CameraShakeCoroutine(float time, float amplitude, float frequency)
+    {
+        float currentTime = 0f;
+        float oldAmp = noise.m_AmplitudeGain;
+        float oldFrequency = noise.m_FrequencyGain;
+
+        noise.m_AmplitudeGain = amplitude;
+        noise.m_FrequencyGain = frequency;
+        while (currentTime < time) 
+        { 
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        noise.m_AmplitudeGain = oldAmp;
+        noise.m_FrequencyGain = oldFrequency;
 
     }
 
@@ -374,6 +409,9 @@ public class PlayerController : MonoBehaviour
 
     public void StartControllingShip()
     {
+        //make player invis;
+        GetComponent<MeshRenderer>().enabled = false;
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -410,6 +448,9 @@ public class PlayerController : MonoBehaviour
 
     public void StopControllingShip()
     {
+        //make player visible;
+        GetComponent<MeshRenderer>().enabled = true;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isControllingShip = false;
