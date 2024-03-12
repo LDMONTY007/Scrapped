@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && didHitConsole || Input.GetKeyDown(KeyCode.F) && isControllingShip)
+        if (Input.GetKeyDown(KeyCode.R) && didHitConsole || Input.GetKeyDown(KeyCode.R) && isControllingShip)
         {
             Debug.Log("HERE");
             if (isControllingShip)
