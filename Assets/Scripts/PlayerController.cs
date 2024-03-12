@@ -9,6 +9,16 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject grappleEndPrefab;
+    private GameObject grappleEnd;
+    public float grappleDistance = 20f;
+    Vector3 grapplingPoint = Vector3.zero;
+
+    private LineRenderer grappleLine;
+
+    private bool didGrapple = false;
+    private bool startGrapplingHook => Input.GetMouseButtonDown(0);
+    private bool doGrapplingHook => Input.GetMouseButton(0);
 
     public static PlayerController instance;
 
@@ -111,6 +121,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(ExecuteAfterFixedUpdateCoroutine());
         instance = this;
         noise = cam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        grappleLine = GetComponent<LineRenderer>();
     }
 
     // Start is called before the first frame update
@@ -129,6 +140,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (grappleEnd != null && !doGrapplingHook)
+        {
+            Destroy(grappleEnd);
+            grappleEnd = null;
+            didGrapple = false;
+            grappleLine.enabled = false;
+        }
+
+        HandleGrappling();
+
         if (Cursor.lockState == CursorLockMode.Locked && !shouldAlignWithShip && !forceAlignWithShip)
         {
             HandleCamRotation();
@@ -241,6 +262,38 @@ public class PlayerController : MonoBehaviour
             oxygenSlider.value = oxygen;
         }
 
+    }
+
+    public void HandleGrappling()
+    {
+        
+        if (startGrapplingHook)
+        {
+            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hitInfo, grappleDistance, playerMask))
+            {
+                grapplingPoint = hitInfo.point;
+                if (doGrapplingHook)
+                {
+                    if (grappleEnd != null)
+                    {
+                        Destroy(grappleEnd);
+                        grappleEnd = null;
+                    }
+                    grappleEnd = Instantiate(grappleEndPrefab, grapplingPoint, Quaternion.LookRotation(hitInfo.normal));
+                    grappleLine.SetPosition(0, transform.position);
+                    grappleLine.SetPosition(1, grappleEnd.transform.position);
+                    grappleLine.enabled = true;
+                }
+                
+                didGrapple = true;
+            }
+        }
+
+        if (doGrapplingHook && didGrapple)
+        {
+            grappleLine.SetPosition(0, transform.position);
+            rb.AddForce((grapplingPoint - transform.position).normalized * 5f);
+        }
     }
 
     public void HandleCamRotation()
