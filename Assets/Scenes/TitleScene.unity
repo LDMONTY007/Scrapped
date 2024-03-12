@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 26570691}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.000091079055, g: 0.000091079055, b: 0.000091079055,
+    a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6996,6 +6997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c991adac89297f94c8cdf5418305f9dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnMonsterBumpEvent:
+    m_PersistentCalls:
+      m_Calls: []
   AudioClip: {fileID: 8300000, guid: 33d68947291681b4b8bf60a26c806e7c, type: 3}
   MonsterStartTransform: {fileID: 721451586}
   MonsterEndTransform: {fileID: 594590089}
@@ -7152,6 +7156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7043e35f30ad86488f68818bd9862d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
   doRandomRotation: 1
 --- !u!1001 &1211206177
 PrefabInstance:
@@ -7300,6 +7307,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7043e35f30ad86488f68818bd9862d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
   doRandomRotation: 1
 --- !u!1 &1345482293
 GameObject:
@@ -7317,7 +7327,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1345482294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7498,6 +7508,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7043e35f30ad86488f68818bd9862d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
   doRandomRotation: 1
 --- !u!1 &1736807492
 GameObject:
@@ -8434,7 +8447,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: BaseScene
+          m_StringArgument: ItemDiagramScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1001 &2075580087
@@ -8584,6 +8597,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7043e35f30ad86488f68818bd9862d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
   doRandomRotation: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 864929184}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.00009181308, g: 0.00009181308, b: 0.00009181308,
+    a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -93,7 +94,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ca8b96984efc274448ad252f480c2524,
+    type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 1d8cd35fe0c3ef04d8551a2471dfc4b1,
     type: 2}
 --- !u!196 &4
@@ -1567,6 +1569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864929185}
   - component: {fileID: 864929184}
+  - component: {fileID: 864929186}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1654,6 +1657,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &864929186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864929183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &874772370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2691,6 +2717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2be75f5990404d40a8b31d3fc447bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 0
   loopGradient: 0
   delayBetweenLoops: 5
   manuallyAssignFields: 0
