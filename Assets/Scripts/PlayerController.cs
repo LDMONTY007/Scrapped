@@ -116,6 +116,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         StopControllingShip();
+        rb.MoveRotation(shipController.transform.rotation);
         camRotation = rb.rotation;
 
         //init this stuff.
