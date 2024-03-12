@@ -7479,8 +7479,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1951211528}
   m_HandleRect: {fileID: 1951211527}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0.9999982
+  m_Size: 0.27137646
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8233,10 +8233,10 @@ RectTransform:
   m_Children:
   - {fileID: 800962760}
   - {fileID: 1025503645}
+  - {fileID: 1394826044}
   - {fileID: 2030590018}
   - {fileID: 282680044}
   - {fileID: 1747602645}
-  - {fileID: 1394826044}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10045,7 +10045,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1218239643}
   m_HandleRect: {fileID: 1218239642}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -10190,6 +10190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1272091106}
   - component: {fileID: 1272091107}
+  - component: {fileID: 1272091108}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -10214,8 +10215,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000009864569, y: 0}
-  m_SizeDelta: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0.000020086765, y: 0.0014542706}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1272091107
 MonoBehaviour:
@@ -10243,6 +10244,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &1272091108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272091105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &1293051991
 GameObject:
   m_ObjectHideFlags: 0
@@ -10844,8 +10859,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1334, y: 360}
+  m_AnchoredPosition: {x: 0.0092087, y: 0}
+  m_SizeDelta: {x: 530, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394826045
 MonoBehaviour:
@@ -10860,7 +10875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.99019146, a: 0.392}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -10902,7 +10917,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 4
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -14267,9 +14282,36 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   _image: {fileID: 0}
   totalTime: 1
+  onGradientAnimationStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2030590023}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: SetCanPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnGradientAnimationEnd:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2030590023}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: SetCanPause
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1751272579
 GameObject:
   m_ObjectHideFlags: 0
@@ -16509,6 +16551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad7f9a2c5fe95f479bdf1c7c9a2021b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canPause: 1
   isPaused: 0
   playerController: {fileID: 1088865921}
   pausePanel: {fileID: 934590518}

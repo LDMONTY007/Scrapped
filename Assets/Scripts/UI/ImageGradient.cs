@@ -23,7 +23,10 @@ public class ImageGradient : MonoBehaviour
     private float _currentTime = 0f;
     public float currentTime { get { return _currentTime; } set { _currentTime = Mathf.Clamp(value, 0f, totalTime); } }
 
+    public UnityEvent onGradientAnimationStart;
     public UnityEvent OnGradientAnimationEnd;
+
+
 
     private void Awake()
     {
@@ -73,6 +76,7 @@ public class ImageGradient : MonoBehaviour
     //just animates from one end of the gradient to the other end.
     public IEnumerator AnimateGradientCoroutine()
     {
+        onGradientAnimationStart.Invoke();
         Debug.Log("ANIMATE COROUTINE");
         Debug.Log(currentTime + " " + totalTime);
         while (currentTime < totalTime)
