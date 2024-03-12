@@ -15,6 +15,10 @@ public class ZeusMonsterFlyBy : MonoBehaviour
     GameObject curMonster;
 
     public AudioClip metalClang;
+    public AudioClip metalClang2;
+    public AudioClip metalClang3;
+
+    public AudioClip lostAntennaAudio;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -82,6 +86,38 @@ public class ZeusMonsterFlyBy : MonoBehaviour
             yield return null;
         }
         Destroy(curMonster);
-       // Destroy(gameObject, 0.01f);
+
+
+        float currentTime1 = 0f;
+        float totalTime1 = 1f;
+        while (currentTime1 < totalTime1)
+        {
+            currentTime1 += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.PlayOneShot(metalClang2);
+
+        float currentTime2 = 0f;
+        float totalTime2 = 1f;
+        while (currentTime2 < totalTime2)
+        {
+            currentTime2 += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.PlayOneShot(lostAntennaAudio);
+        float currentTime3 = 0f;
+        float totalTime3 = 7.56f;
+        while (currentTime3 < totalTime3) 
+        {
+            currentTime3 += Time.deltaTime;
+            yield return null;
+        }
+        audioSource.PlayOneShot(metalClang3);
+
+        //Delete the antenna from the top of the ship.
+        Destroy(ShipController.instance.antenna);
+        // Destroy(gameObject, 0.01f);
     }
 }

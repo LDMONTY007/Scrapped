@@ -82,15 +82,10 @@ public class RepairMinigame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             playerController.scrapCount--;
-            if (playerController.scrapCount <= 0)
-            {
-                //if we are out of scrap stop repairing.
-                playerController.StopRepairingLose();
-            }
             if (RectTransformExtensions.Overlaps(handleTransform, hitAreaTransform))
             {
                 repairCount++;
-                if (playerController.scrapCount <= 0)
+                if (playerController.scrapCount <= 0 && repairCount < 3)
                 {
                     //if we are out of scrap stop repairing.
                     playerController.StopRepairingLose();
@@ -100,7 +95,12 @@ public class RepairMinigame : MonoBehaviour
                     StartCoroutine(ColorDelay());
                 }
             }
-            
+            else if (playerController.scrapCount <= 0)
+            {
+                //if we are out of scrap stop repairing.
+                playerController.StopRepairingLose();
+            }
+
         }
 
         /*if (Input.GetKeyDown(KeyCode.H) && 0.45f <= currentSliderValue && currentSliderValue <= 0.55f)
@@ -142,8 +142,8 @@ public class RepairMinigame : MonoBehaviour
             yield return null;
         }
 
-        sliderMaterial.SetColor("_LineColor", Color.red);
-        hitAreaTransform.gameObject.GetComponent<Image>().color = Color.red;
+        sliderMaterial.SetColor("_LineColor", Color.white);
+        hitAreaTransform.gameObject.GetComponent<Image>().color = Color.white;
         if (repairCount >= 3)
         {
             repairCount = 0;

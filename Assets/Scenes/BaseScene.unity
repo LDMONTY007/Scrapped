@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: f2fd4c98b33e2ea4dabc1613777f251c, type: 2}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6721,6 +6721,9 @@ MonoBehaviour:
   stationTransform: {fileID: 293697909}
   monster: {fileID: 473806428037523778, guid: 5ce741b7fbb0d744083775fd0bf74769, type: 3}
   metalClang: {fileID: 8300000, guid: 509e7514036686b4a80f52b0a9eac707, type: 3}
+  metalClang2: {fileID: 8300000, guid: b19516c93622b0e4aa6b9caa5123bdcb, type: 3}
+  metalClang3: {fileID: 8300000, guid: f166dd85f4f02084abe940aa07e5f23f, type: 3}
+  lostAntennaAudio: {fileID: 8300000, guid: 705b8f8a4c9be904cbae458b948c3c3f, type: 3}
 --- !u!1 &785465446
 GameObject:
   m_ObjectHideFlags: 0
@@ -13027,7 +13030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13336,7 +13339,7 @@ MonoBehaviour:
   speedText: {fileID: 394398772}
   damagePrefab: {fileID: 7075581648310192327, guid: d699c8dee02410443ae8024bbccd413d,
     type: 3}
-  antenna: {fileID: 0}
+  antenna: {fileID: 1429186270}
   damageDecals: []
   isPlayerControlled: 0
   maxSpeed: 20

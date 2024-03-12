@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class ShipController : MonoBehaviour
 {
-    static ShipController instance;
+    public static ShipController instance;
 
     private float _health = 100f;
 
