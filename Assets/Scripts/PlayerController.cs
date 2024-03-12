@@ -122,6 +122,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         noise = cam.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         grappleLine = GetComponent<LineRenderer>();
+        grappleLine.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -148,10 +149,11 @@ public class PlayerController : MonoBehaviour
             grappleLine.enabled = false;
         }
 
-        HandleGrappling();
+        
 
         if (Cursor.lockState == CursorLockMode.Locked && !shouldAlignWithShip && !forceAlignWithShip)
         {
+            HandleGrappling();
             HandleCamRotation();
         }
         
@@ -304,7 +306,7 @@ public class PlayerController : MonoBehaviour
 
             //Combine all the rotations around their respective axes relative to the current directions
             //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
-            Quaternion newRotation = Quaternion.AngleAxis(camInput.y * mouseRotationSpeed, up) * Quaternion.AngleAxis(-camInput.x * mouseRotationSpeed, right) * Quaternion.AngleAxis(camInput.z * rollRotationSpeed, fwd);
+            Quaternion newRotation = Quaternion.AngleAxis(camInput.y * mouseRotationSpeed * Time.deltaTime, up) * Quaternion.AngleAxis(-camInput.x * mouseRotationSpeed * Time.deltaTime, right) * Quaternion.AngleAxis(camInput.z * rollRotationSpeed * Time.deltaTime, fwd);
             /*Quaternion newRotation = Quaternion.AngleAxis(camInput.y, transform.up) * Quaternion.AngleAxis(-camInput.x, transform.right) * Quaternion.AngleAxis(camInput.z, transform.forward);*/
 
             if (shouldAlignWithShip)

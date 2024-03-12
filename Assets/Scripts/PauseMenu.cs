@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     public GameObject pausePanel;
     public GameObject playerControlPanel;
     public GameObject shipControlPanel;
+    public GameObject playerPanel;
+    public GameObject shipPanel;
 
     public void SetCanPause(bool value)
     {
@@ -41,6 +43,15 @@ public class PauseMenu : MonoBehaviour
                 pausePanel.SetActive(true);
                 playerControlPanel.SetActive(true);
                 shipControlPanel.SetActive(true);
+
+                if (playerController.isControllingShip)
+                {
+                    shipPanel.SetActive(false);
+                }
+                else
+                {
+                    playerPanel.SetActive(false);
+                }
                 if (playerController != null)
                 {
                     if (!playerController.isControllingShip)
@@ -52,6 +63,15 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
+                if (playerController.isControllingShip)
+                {
+                    shipPanel.SetActive(true);
+                }
+                else
+                {
+                    playerPanel.SetActive(true);
+                }
+
                 AudioListener.pause = false;
                 Time.timeScale = 1f;
                 pausePanel.SetActive(false);
