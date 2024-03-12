@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 //Jamming but also trying not to steal code so I'm just kinda linking things where I found stuff.
 //https://forum.unity.com/threads/progress-bar-slider-gradient-fill.706544/
@@ -9,6 +10,8 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Image))]
 public class ImageGradient : MonoBehaviour
 {
+    public bool forceAlignPlayerToShip = false;
+
     public bool playOnStart = false;
     public bool loopGradient = false;
     public float delayBetweenLoops = 5f;
@@ -76,6 +79,11 @@ public class ImageGradient : MonoBehaviour
     //just animates from one end of the gradient to the other end.
     public IEnumerator AnimateGradientCoroutine()
     {
+        if (forceAlignPlayerToShip)
+        {
+            if (PlayerController.instance != null)
+                PlayerController.instance.forceAlignWithShip = true;
+        }
         onGradientAnimationStart.Invoke();
         Debug.Log("ANIMATE COROUTINE");
         Debug.Log(currentTime + " " + totalTime);
@@ -98,6 +106,11 @@ public class ImageGradient : MonoBehaviour
         }
         currentTime = 0f;
         OnGradientAnimationEnd.Invoke();
+        if (forceAlignPlayerToShip)
+        {
+            if (PlayerController.instance != null)
+            PlayerController.instance.forceAlignWithShip = false;
+        }
         if (loopGradient)
         {
             StartCoroutine(delayCoroutine(delayBetweenLoops, AnimateGradientCoroutine()));

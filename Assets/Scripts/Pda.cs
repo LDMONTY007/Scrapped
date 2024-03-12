@@ -10,7 +10,14 @@ public class Pda : MonoBehaviour, IInteractible
 {
     public UnityEvent OnInteractEvent;
 
+    public string title = string.Empty;
+
+    [TextArea]
+    public string content = string.Empty;
+
     public bool doRandomRotation = true;
+
+    //public string fileName = null;
 
     //This will be unused for now.
     public void OnFocus(PlayerController p)
@@ -22,8 +29,7 @@ public class Pda : MonoBehaviour, IInteractible
     {
         Debug.Log("On Interact!");
         //p.scrapCount += 3;
-        StartCoroutine(PickupCoroutine(1f, p.transform));
-        OnInteractEvent.Invoke();   
+        StartCoroutine(PickupCoroutine(1f, p.transform));   
     }
 
 
@@ -63,6 +69,9 @@ public class Pda : MonoBehaviour, IInteractible
             currentTime += Time.deltaTime;
             yield return null;
         }
+        OnInteractEvent.Invoke();
+        //Open the PDA
+        PdaController.Instance.OpenPDA(false, title, content);
         Destroy(gameObject, 0.01f);
     }
 }
