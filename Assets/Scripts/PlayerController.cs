@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         StopControllingShip();
         rb.rotation = shipController.transform.rotation;
-        camRotation = shipController.transform.rotation;
+        camRotation = rb.rotation;
 
         //init this stuff.
         fwd = transform.forward;
@@ -298,6 +298,7 @@ public class PlayerController : MonoBehaviour
 
     public void HandleCamRotation()
     {
+
         if (!isControllingShip)
         {
 

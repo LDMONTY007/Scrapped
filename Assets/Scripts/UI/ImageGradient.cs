@@ -42,6 +42,12 @@ public class ImageGradient : MonoBehaviour
 
     private void Start()
     {
+        if (forceAlignPlayerToShip)
+        {
+            
+                PlayerController.instance.forceAlignWithShip = true;
+        }
+
         if (useCanvasGroupAlpha)
         {
             canvasGroup.alpha = _gradient.Evaluate(currentTime / totalTime).a;

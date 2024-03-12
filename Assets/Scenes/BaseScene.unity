@@ -14665,7 +14665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2be75f5990404d40a8b31d3fc447bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceAlignPlayerToShip: 0
+  forceAlignPlayerToShip: 1
   playOnStart: 1
   loopGradient: 0
   delayBetweenLoops: 5
