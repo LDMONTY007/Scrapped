@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d13805ce73209f459d0c05b32bbed4e
+guid: b65611f4ded9aa047aa95e1ffd3dcbf1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: FuelRodCap
-    second: {fileID: 2100000, guid: e479cf9ba81adbf4d82523568b9bdad7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FuelRods
-    second: {fileID: 2100000, guid: d73a94c98597f254b95f561346a3227a, type: 2}
+      name: Collar
+    second: {fileID: 2100000, guid: a7a48b5240d31854b8971a21cd3b138d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -22,22 +17,22 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Hull
-    second: {fileID: 2100000, guid: afa6c41a0a0b7994c8f6cd9c4fce679e, type: 2}
+      name: Gloves
+    second: {fileID: 2100000, guid: 3a0de190896363341b52c9ce66a32977, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: a816f5b699eed7249ab0ae6936e70da9, type: 2}
+      name: Suit
+    second: {fileID: 2100000, guid: 98aed36211f5bb84d907ac2e3e3963b4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: SolarPanel
-    second: {fileID: 2100000, guid: 185629cf358ae2343b5e2d5fad02d9a0, type: 2}
+      name: Tread
+    second: {fileID: 2100000, guid: a6c8cfaa0d83be5448a1ea8ef057308c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
-    materialSearch: 2
+    materialSearch: 1
     materialLocation: 1
   animations:
     legacyGenerateAnimations: 4

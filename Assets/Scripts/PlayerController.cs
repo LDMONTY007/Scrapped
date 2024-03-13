@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     public float grappleDistance = 20f;
     Vector3 grapplingPoint = Vector3.zero;
 
+    public GameObject playerModel;
+
     private LineRenderer grappleLine;
 
     private bool didGrapple = false;
@@ -538,7 +540,7 @@ public class PlayerController : MonoBehaviour
     public void StartControllingShip()
     {
         //make player invis;
-        GetComponent<MeshRenderer>().enabled = false;
+        playerModel.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -577,7 +579,7 @@ public class PlayerController : MonoBehaviour
     public void StopControllingShip()
     {
         //make player visible;
-        GetComponent<MeshRenderer>().enabled = true;
+        playerModel.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
