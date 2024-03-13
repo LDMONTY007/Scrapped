@@ -414,22 +414,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2025521095}
     m_Modifications:
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.254
+      value: -3.3859978
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.85
+      value: -12.559999
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.384
+      value: -6.4659996
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
@@ -439,17 +439,17 @@ PrefabInstance:
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
@@ -474,50 +474,50 @@ PrefabInstance:
     - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: content
-      value: "###BEGIN_LOG###\r\n\r\nThe last transmission I received was from Mission
-        Control, they wanted to come pick us up with the ATLAS Vessel (Automated
+      value: "###BEGIN_LOG_2200###\r\n\r\nThe last transmission I received was from
+        Mission Control, they wanted to come pick us up with the ATLAS Vessel (Automated
         Traversal...). But that thing is still out there. My transmissions go unanswered.
-        I tried manually pinging Mission Control and didn't get a pingback.\r\nOut
-        here, the only thing I can do is wait. The other two researchers were on
-        Zeus after the Atlas helped them transport the fuel rods while I inserted
-        the last of the control rods to prepare for the final fuel rod to be removed.
-        \r\n\r\n%%%EDIT_2400_3_11_24%%%\r\n\r\nApollyon was a research station built
-        for testing the effects of radiation without any particles to transmit radiation.
-        The idea was initially scrapped after some researchers discovered the protections
-        against radiation weren't working like they were supposed to - there was
-        a leak. \r\nAll control rods were inserted, and fuel rods were in the process
-        of being removed... yet something was drawn to it, this creature. Like a
-        moth to a flame, it wanted this vast source of energy so that it could keep
-        repopulating. Creating a moon-sized egg takes vast amounts of \r\nenergy.
-        Do you see where I'm going with this? The moon was a God Damn egg, and it
-        fucking hatched. The comets projected to be in our quadrant weren't comets,
-        they were the remnants of the moon. There isn't much we could do about getting
-        hit by them, but now that it's been only minutes and the moon is nowhere
-        to be seen. We should have at least seen it go by 2 or 3 times by now with
-        how fast we orbit. I used as much anti-thrust as I could to stop Apollyon
-        from drifting out of orbit. We're farther out now and I can feel less of
-        earth with each moment. And that thing, that monster that hatched out of
-        it? I can see it, staring out at me from the void. It's almost as if it knows
-        I'm trying to solve this, and knows I'd be willing to turn the reactor on
-        to kill it. It isn't an animal. There\u2019s a light emitting from it, it
-        has a subtle glow, but I can tell it\u2019s still out there. The thing is,
-        it's strategizing, waiting for the right moment. God, what I wouldn't give
-        to be on earth right now. It knew to rip the antenna off of the station.
-        It somehow knew that I required it for communication. \r\n\r\n%%%EDIT_0110_3_12_24%%%\r\n\r\nI
-        fell asleep for a while and lost contact with Zeus. ATLAS should come to
-        pick me up regardless but it isn't pinging back either. ATLAS can't fail
-        a response ping unless he's -It's been destroyed. The ATLAS Vessel is more
-        than it seems, mission control worked with some data company to build it
-        and they specifically told us not to treat it like a person, no matter how
-        similar it was to one. It almost makes me wonder whether there's a machine
-        piloting it, or a person, dismembered and floating in a jar, with wires stuck
-        into their brain. A machine doesn't respond the way ATLAS does. ATLAS has
-        distractions, a machine cannot be distracted by desire, only by a better
-        outcome for their goal. Their Minimax algorithm can be flawed in that way,
-        but a human, a human's goal can change and warp. If I ever get out of here,
-        I'm going to pry open ATLAS's maintenance hatch and find out whether or not
-        he's a human. \r\n\r\n\r\n\r\n\r\n\r\n%%%EDIT_0250_3_12_24%%%\r\n\r\nI pinged
-        Atlas with my helmet directly and he responded with coordinates. He\u2019s
+        I tried manually pinging Mission Control and didn't get a pingback. Out here,
+        the only thing I can do is wait. The other two researchers were on Zeus after
+        the Atlas helped them transport the fuel rods. I was inserting the last of
+        the control rods and preparing to remove the final fuel rod when I lost contact
+        with Zeus. \r\n\r\n%%%EDIT_2400_3_11_24%%%\r\n\r\nApollyon was a research
+        station built for testing the effects of radiation without any particles
+        to transmit radiation. The idea was initially scrapped after some researchers
+        discovered the protections against radiation weren't working like they were
+        supposed to - there was a leak. \r\nAll control rods were inserted, and fuel
+        rods were in the process of being removed... yet something was drawn to it,
+        this creature. Like a moth to a flame, it wanted this vast source of energy
+        so that it could keep repopulating. Creating a moon-sized egg takes vast
+        amounts of \r\nenergy. Do you see where I'm going with this? The moon was
+        a God Damn egg, and it fucking hatched. The comets projected to be in our
+        quadrant weren't comets, they were the remnants of the moon. There isn't
+        much we could do about getting hit by them, but now that it's been only minutes
+        and the moon is nowhere to be seen. We should have at least seen it go by
+        2 or 3 times by now with how fast we orbit. I used as much anti-thrust as
+        I could to stop Apollyon from drifting out of orbit. We're farther out now
+        and I can feel less of earth with each moment. And that thing, that monster
+        that hatched out of it? I can see it, staring out at me from the void. It's
+        almost as if it knows I'm trying to solve this, and knows I'd be willing
+        to turn the reactor on to kill it. It isn't an animal. There\u2019s a light
+        emitting from it, it has a subtle glow, but I can tell it\u2019s still out
+        there. The thing is, it's strategizing, waiting for the right moment. God,
+        what I wouldn't give to be on earth right now. It knew to rip the antenna
+        off of the station. It somehow knew that I required it for communication.
+        \r\n\r\n%%%EDIT_0110_3_12_24%%%\r\n\r\nI fell asleep for a while and lost
+        contact with Zeus. ATLAS should come to pick me up regardless but it isn't
+        pinging back either. ATLAS can't fail a response ping unless he's -It's been
+        destroyed. The ATLAS Vessel is more than it seems, mission control worked
+        with some data company to build it and they specifically told us not to treat
+        it like a person, no matter how similar it was to one. It almost makes me
+        wonder whether there's a machine piloting it, or a person, dismembered and
+        floating in a jar, with wires stuck into their brain. A machine doesn't respond
+        the way ATLAS does. ATLAS has distractions, a machine cannot be distracted
+        by desire, only by a better outcome for their goal. Their Minimax algorithm
+        can be flawed in that way, but a human, a human's goal can change and warp.
+        If I ever get out of here, I'm going to pry open ATLAS's maintenance hatch
+        and find out whether or not he's a human. \r\n\r\n\r\n\r\n\r\n\r\n%%%EDIT_0250_3_12_24%%%\r\n\r\nI
+        pinged Atlas with my helmet directly and he responded with coordinates. He\u2019s
         pinged the same set of coordinates back 5 times in a row which makes me think
         he wants me to go there. I don\u2019t have a ship but the cords are close
         enough that I could jump off the station and hope my grappling hook can reach.
@@ -534,7 +534,7 @@ PrefabInstance:
         but it\u2019s not a technological creature. The only way that this could
         happen is if someone manually activated my suit\u2019s cryo functionality
         from earth. Maybe they know that I\u2019m running low on energy? It doesn\u2019t
-        make sense, something isn\u2019t right about this. \r\n\r\n##END_LOG##\r\n\r\n\r\n"
+        make sense, something isn\u2019t right about this. \r\n\r\n##END_LOG##\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
@@ -2822,7 +2822,7 @@ Transform:
   m_GameObject: {fileID: 210268025}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.51, y: -3.27, z: 99.89}
+  m_LocalPosition: {x: 16.4, y: -49.8, z: 166.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3667,8 +3667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMin: 1
   scaleMax: 10
-  size: 100
-  density: 100
+  size: 500
+  density: 500
   asteroidPrefabs:
   - {fileID: 8994045206743901083, guid: f0e1c402048634545aed0507edb2ee7a, type: 3}
 --- !u!1 &282680043
@@ -21443,7 +21443,7 @@ Transform:
   m_GameObject: {fileID: 731559423}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 128.3}
+  m_LocalPosition: {x: 0, y: -98, z: 272.3}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22160,6 +22160,151 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810655110}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &817662049
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1446640563}
+    m_Modifications:
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.478
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.297
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.832
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: title
+      value: 3/11/2024 Meteor Shower
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: content
+      value: "###BEGIN_LOG_2120###\r\n\r\nWe were dropping off the fuel rods for
+        the Apollyon when the shower hit. A comet knocked the Atlas off of our docking
+        port. Dock A and Airlock Door A-1 were damaged but Airlock Door A-0 is still
+        shut tight. Mission Control said they\u2019re sending Atlas to assist (Did
+        they not know it was here?). \r\n\r\n%%%EDIT_2140_3_11_24%%%\r\n\r\nThe shower
+        continues to rain down. \r\n\r\n%%%EDIT_2200_3_11_24%%%\r\n\r\nOur Antenna
+        was ripped off by comet debris.\r\n\r\n%%%EDIT_2215_3_11_24%%%\r\n\r\nI wonder
+        how Dr. Clark is doing. His station is better structured for this. \r\n\r\n%%%EDIT_2230_3_11_24%%%\r\n\r\nI
+        suggested to Anton that we should try to reach Appolyon to use its communications
+        array and contact the Atlas. \r\n\r\n%%%EDIT_2335_3_11_24%%%\r\n\r\nAnton
+        claims to have seen something staring at him from the Void. \r\n\r\n%%%EDIT_2345_3_11_24%%%\r\n\r\nAn
+        attempt was made to reach Apollyon and use their communications array. Our
+        tether wasn\u2019t long enough and Anton refused to cut it. \r\n\r\n%%%EDIT_2350_3_11_24%%%\r\n\r\nAnton
+        has a migraine from \u201CThe Echoes\u201D. I might have to forcefully put
+        him into Cryo sleep to protect myself. His suit will lock at the joints so
+        he won\u2019t be able to hurt me should he do something irrational.\r\n\r\n%%%EDIT_2352_3_11_24%%%\r\n\r\nAnton
+        is sleeping. I can see something bright outside the ship where the moon should
+        be. \r\n\r\n%%%EDIT_2354_3_11_24%%%\r\n\r\nThere are stars where there weren\u2019t
+        any before. I can\u2019t take my eyes off of them. \r\n\r\n\r\n%%%EDIT_2400_3_11_24%%%\r\n\r\nI
+        can hear the Echoes, the ship is shaking.\r\n\r\n%%%EDIT_2430_3_11_24%%%\r\n\r\nThe
+        station was ripped in half by a bright comet. \r\n\r\n%%%EDIT_0000_3_12_24%%%\r\n\r\nThe
+        Echoes are here. \r\n\r\n\r\n##END_LOG##\r\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1394826048}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenPDA
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PdaController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TestPDA.txt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804518936917092489, guid: 918ed4c0c468082468e0ec1d66626f11,
+        type: 3}
+      propertyPath: m_Name
+      value: PDA (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 918ed4c0c468082468e0ec1d66626f11, type: 3}
+--- !u!4 &817662050 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+    type: 3}
+  m_PrefabInstance: {fileID: 817662049}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -40729,6 +40874,7 @@ Transform:
   - {fileID: 744905081}
   - {fileID: 1802793243}
   - {fileID: 2009405867}
+  - {fileID: 817662050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1453855044
@@ -43201,6 +43347,12 @@ MonoBehaviour:
   totalTime: 1
   source: {fileID: 0}
   clip: {fileID: 8300000, guid: 3b7cf5f4c88f2584cb9c65bfa36999ea, type: 3}
+--- !u!4 &1768681558 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1612365304616752447, guid: 918ed4c0c468082468e0ec1d66626f11,
+    type: 3}
+  m_PrefabInstance: {fileID: 25988638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1774282523
 GameObject:
   m_ObjectHideFlags: 0
@@ -44230,7 +44382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903721398}
   serializedVersion: 2
-  m_LocalRotation: {x: -2.9522337e-17, y: 0.3892045, z: 1.2473764e-17, w: 0.9211514}
+  m_LocalRotation: {x: 2.9522334e-17, y: 0.3892045, z: -1.2473763e-17, w: 0.9211514}
   m_LocalPosition: {x: -83.78033, y: 31.38, z: -17.900398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -50073,13 +50225,14 @@ Transform:
   m_GameObject: {fileID: 2025521091}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 36.64, y: 9.71, z: 60.85}
+  m_LocalPosition: {x: 147.2, y: 9.71, z: 97.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1396859307}
   - {fileID: 1759139454}
   - {fileID: 2015846993}
+  - {fileID: 1768681558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2030590017
@@ -53314,4 +53467,3 @@ SceneRoots:
   - {fileID: 1153578888}
   - {fileID: 87097426}
   - {fileID: 719963667}
-  - {fileID: 25988638}
