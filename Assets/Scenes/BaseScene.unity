@@ -469,52 +469,72 @@ PrefabInstance:
     - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: title
-      value: '3/11/2024 Echoes. '
+      value: 3/11/2024 Lost Contact
       objectReference: {fileID: 0}
     - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
       propertyPath: content
-      value: "The last transmission I recieved was from Mission Control, they wanted
-        to come pick us up with the ATLAS Vessel (Automated Traversal...). But \r\nthat
-        thing is still out there. My transmissions aren't being responded to. I tried
-        manually pinging Mission Control and didn't get a ping back.\r\nI think out
+      value: "###BEGIN_LOG###\r\n\r\nThe last transmission I received was from Mission
+        Control, they wanted to come pick us up with the ATLAS Vessel (Automated
+        Traversal...). But that thing is still out there. My transmissions go unanswered.
+        I tried manually pinging Mission Control and didn't get a pingback.\r\nOut
         here, the only thing I can do is wait. The other two researchers were on
-        zeus after atlas helped them transport the fuel rods while\r\nI inserted
+        Zeus after the Atlas helped them transport the fuel rods while I inserted
         the last of the control rods to prepare for the final fuel rod to be removed.
-        \r\n\r\n%%%EDIT_2400%%%\r\n\r\nApollyon was a research station built for
-        testing the affects of radiation without any particles to transmit radiation.
-        The idea was initially\r\nscrapped after some researchers discovered the
-        protections against radiation weren't working like they were supposed to
-        - there was a leak. \r\nAll control rods were inserted, and fuel rods were
-        in the process of being removed... yet something was drawn to it, this creature.
-        Like a \r\nmoth to a flame it wanted this vast source of energy so that it
-        could keep repopulating. Creating a moon-sized egg takes vast amounts of
-        \r\nenergy apparently. Do you see where I'm going with this? The moon was
-        a God Damn egg, and it fucking hatched. The comets projected to be in our
-        \r\nquadrant weren't comets, they were the remnants of the moon. There isn't
-        much we could do about getting hit by them, but now that it's been only\r\nminutes
-        and the moon is no where to be seen. We should have at least seen it go buy
-        2 or 3 times by now with how fast we orbit. I used as much \r\nanti-thrust
-        as I could to stop Apollyon from drifting out of orbit. We're farther out
-        now and I can feel less of earth with each moment. And \r\nthat thing, that
-        monster that hatched out of it? I can see it, staring out at me from the
-        void. It's almost as if it knows I'm trying to solve \r\nthis, and knows
-        I'd be willing to turn the reactor on to kill it. It isn't an animal. The
-        thing out there, it's strategizing, waiting for the \r\nright moment. God,
-        what I wouldn't give to be on earth right now. \r\n\r\n%%%EDIT_0440%%%\r\n\r\nI
+        \r\n\r\n%%%EDIT_2400_3_11_24%%%\r\n\r\nApollyon was a research station built
+        for testing the effects of radiation without any particles to transmit radiation.
+        The idea was initially scrapped after some researchers discovered the protections
+        against radiation weren't working like they were supposed to - there was
+        a leak. \r\nAll control rods were inserted, and fuel rods were in the process
+        of being removed... yet something was drawn to it, this creature. Like a
+        moth to a flame, it wanted this vast source of energy so that it could keep
+        repopulating. Creating a moon-sized egg takes vast amounts of \r\nenergy.
+        Do you see where I'm going with this? The moon was a God Damn egg, and it
+        fucking hatched. The comets projected to be in our quadrant weren't comets,
+        they were the remnants of the moon. There isn't much we could do about getting
+        hit by them, but now that it's been only minutes and the moon is nowhere
+        to be seen. We should have at least seen it go by 2 or 3 times by now with
+        how fast we orbit. I used as much anti-thrust as I could to stop Apollyon
+        from drifting out of orbit. We're farther out now and I can feel less of
+        earth with each moment. And that thing, that monster that hatched out of
+        it? I can see it, staring out at me from the void. It's almost as if it knows
+        I'm trying to solve this, and knows I'd be willing to turn the reactor on
+        to kill it. It isn't an animal. There\u2019s a light emitting from it, it
+        has a subtle glow, but I can tell it\u2019s still out there. The thing is,
+        it's strategizing, waiting for the right moment. God, what I wouldn't give
+        to be on earth right now. It knew to rip the antenna off of the station.
+        It somehow knew that I required it for communication. \r\n\r\n%%%EDIT_0110_3_12_24%%%\r\n\r\nI
         fell asleep for a while and lost contact with Zeus. ATLAS should come to
-        pick me up regardless but it isn't pinging back either. It's not possible\r\nfor
-        ATLAS to fail a response ping unless he's -It's been destroyed. The ATLAS
-        Vessel is more than it seems, mission control worked with some data\r\ncompnay
-        to build it and they specifically told us not to treat it like a person,
-        no matter how similar it was to one. It almost makes me wonder\r\nwhether
-        there's a machine piloting it, or a person, dismembered and floating in a
-        jar, with wires stuck into their brain. A machine doesn't respond\r\nthe
-        way ATLAS does. ATLAS has distractions, a machine cannot be distracted by
-        desire, only by a better outcome for their goal. Their Minimax algorithm\r\ncan
-        be flawed in that way, but a human, a human's goal can change and warp. If
-        I ever get out of here, I'm going to pry open ATLAS's maitenence hatch\r\nand
-        find out whether or not he's a human. "
+        pick me up regardless but it isn't pinging back either. ATLAS can't fail
+        a response ping unless he's -It's been destroyed. The ATLAS Vessel is more
+        than it seems, mission control worked with some data company to build it
+        and they specifically told us not to treat it like a person, no matter how
+        similar it was to one. It almost makes me wonder whether there's a machine
+        piloting it, or a person, dismembered and floating in a jar, with wires stuck
+        into their brain. A machine doesn't respond the way ATLAS does. ATLAS has
+        distractions, a machine cannot be distracted by desire, only by a better
+        outcome for their goal. Their Minimax algorithm can be flawed in that way,
+        but a human, a human's goal can change and warp. If I ever get out of here,
+        I'm going to pry open ATLAS's maintenance hatch and find out whether or not
+        he's a human. \r\n\r\n\r\n\r\n\r\n\r\n%%%EDIT_0250_3_12_24%%%\r\n\r\nI pinged
+        Atlas with my helmet directly and he responded with coordinates. He\u2019s
+        pinged the same set of coordinates back 5 times in a row which makes me think
+        he wants me to go there. I don\u2019t have a ship but the cords are close
+        enough that I could jump off the station and hope my grappling hook can reach.
+        I don\u2019t have much time to do it as the station is running low on power.
+        Either I turn the reactor on, and that thing eats me, or I jump into the
+        void. (and that thing eats me). I\u2019m going to go retrieve the rations
+        left in the fridge and put them in my pack then I\u2019m going to go jump
+        off the edge of the ship towards Atlas. I hope he didn\u2019t get targeted
+        as well. Atlas should have a working antenna if he can ping me directly.
+        I\u2019ll have to take the risk to get the antenna. \r\n\r\n%%%EDIT_0310_3_12_24%%%\r\n\r\nMy
+        suit\u2019s initiating manual override and sending me into cryosleep. I can\u2019t
+        figure out how it knows what I was planning to do, but it does. Either, someone
+        else is here observing us, or that thing is doing this. It\u2019s smart,
+        but it\u2019s not a technological creature. The only way that this could
+        happen is if someone manually activated my suit\u2019s cryo functionality
+        from earth. Maybe they know that I\u2019m running low on energy? It doesn\u2019t
+        make sense, something isn\u2019t right about this. \r\n\r\n##END_LOG##\r\n\r\n\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 4373473164247284079, guid: 918ed4c0c468082468e0ec1d66626f11,
         type: 3}
@@ -994,6 +1014,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &66664105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66664106}
+  m_Layer: 0
+  m_Name: AnglerStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &66664106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66664105}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.95, z: 8.57}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 731559427}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &81057190
 GameObject:
@@ -21301,6 +21352,7 @@ GameObject:
   - component: {fileID: 731559426}
   - component: {fileID: 731559425}
   - component: {fileID: 731559424}
+  - component: {fileID: 731559428}
   m_Layer: 0
   m_Name: Comet
   m_TagString: Waypoint
@@ -21323,12 +21375,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!23 &731559425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21336,7 +21388,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731559423}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -21395,6 +21447,8 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 66664106}
+  - {fileID: 1692826725}
   - {fileID: 2009479377}
   - {fileID: 702375364}
   - {fileID: 712017943}
@@ -21405,6 +21459,22 @@ Transform:
   - {fileID: 267632151}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &731559428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731559423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eef88f107c5fb74389e5ae761eba106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterStartTransform: {fileID: 66664106}
+  MonsterEndTransform: {fileID: 1088865920}
+  stationTransform: {fileID: 731559427}
+  monster: {fileID: 3051808196993320131, guid: 0e4973be90ccef94b96cb50ed85699f6, type: 3}
 --- !u!1 &738051908
 GameObject:
   m_ObjectHideFlags: 0
@@ -41980,6 +42050,37 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1692826724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692826725}
+  m_Layer: 0
+  m_Name: AnglerEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692826725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692826724}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.95000005, z: -1.99}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 731559427}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697440351
 GameObject:
   m_ObjectHideFlags: 0
@@ -44129,7 +44230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903721398}
   serializedVersion: 2
-  m_LocalRotation: {x: 2.9522334e-17, y: 0.3892045, z: -1.2473763e-17, w: 0.9211514}
+  m_LocalRotation: {x: -2.9522337e-17, y: 0.3892045, z: 1.2473764e-17, w: 0.9211514}
   m_LocalPosition: {x: -83.78033, y: 31.38, z: -17.900398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
