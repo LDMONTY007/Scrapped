@@ -2,6 +2,7 @@ using System.Collections;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AnglerAttack : MonoBehaviour
 {
@@ -88,8 +89,13 @@ public class AnglerAttack : MonoBehaviour
             currentTime += Time.deltaTime;
             yield return null;
         }
-        Destroy(curMonster);
-        curMonster = null;
+        /*Destroy(curMonster);
+        curMonster = null;*/
+
+
+
+        //For now end the game on the angler attack.
+        GameManager.instance.EndGame();
 
 
 /*        float currentTime1 = 0f;

@@ -44623,7 +44623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903721398}
   serializedVersion: 2
-  m_LocalRotation: {x: 2.9522334e-17, y: 0.3892045, z: -1.2473763e-17, w: 0.9211514}
+  m_LocalRotation: {x: -2.9522337e-17, y: 0.3892045, z: 1.2473764e-17, w: 0.9211514}
   m_LocalPosition: {x: -83.78033, y: 31.38, z: -17.900398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44654,6 +44654,7 @@ GameObject:
   - component: {fileID: 1946078834}
   - component: {fileID: 1946078836}
   - component: {fileID: 1946078835}
+  - component: {fileID: 1946078837}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -44779,6 +44780,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946078833}
   m_CullTransparentMesh: 1
+--- !u!114 &1946078837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946078833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b36a4a6a9c9e94eaec7b4fde7399e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1947782344
 GameObject:
   m_ObjectHideFlags: 0
@@ -50568,6 +50581,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918e1a4d90b593946a11cb16cb0e78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 0}
+  StartButton: {fileID: 0}
+  QuitButton: {fileID: 0}
+  creditsButton: {fileID: 0}
+  StartText: {fileID: 0}
+  QuitText: {fileID: 0}
+  creditsText: {fileID: 0}
+  endingText: {fileID: 0}
 --- !u!114 &2030590023
 MonoBehaviour:
   m_ObjectHideFlags: 0

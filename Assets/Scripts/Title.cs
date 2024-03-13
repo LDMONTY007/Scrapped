@@ -10,20 +10,28 @@ public class Title : MonoBehaviour
 
     public Button StartButton;
     public Button QuitButton;
+    public Button creditsButton;
     public TextMeshProUGUI StartText;
     public TextMeshProUGUI QuitText;
+    public TextMeshProUGUI creditsText;
+
+    public TextMeshProUGUI endingText;
 
     private void Awake()
     {
         titleText.alpha = 0f;
         Image startImage = StartButton.GetComponent<Image>();
         Image quitImage = QuitButton.GetComponent<Image>();
+        Image creditsImage = creditsButton.GetComponent<Image>();
         startImage.color = new Color(startImage.color.r, startImage.color.g, startImage.color.b, 0f);
         quitImage.color = new Color(quitImage.color.r, quitImage.color.g, quitImage.color.b, 0f);
+        creditsImage.color = new Color(creditsImage.color.r, creditsImage.color.g, creditsImage.color.b, 0f);
         QuitText.alpha = 0f;
         StartText.alpha = 0f;
+        creditsText.alpha = 0f;
         StartButton.interactable = false;
         QuitButton.interactable = false;
+        creditsButton.interactable = false;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -36,11 +44,19 @@ public class Title : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-        StartCoroutine(LerpTextAlphaCoroutine(0.5f, titleText));
-        StartCoroutine(delayCoroutine(0.5f, LerpTextAlphaCoroutine(0.5f, StartText)));
-        StartCoroutine(delayCoroutine(0.5f, LerpTextAlphaCoroutine(0.5f, QuitText)));
-        StartCoroutine(delayCoroutine(0.5f, LerpButtonAlphaCoroutine(0.5f, StartButton, StartButton.GetComponent<Image>())));
-        StartCoroutine(delayCoroutine(0.5f, LerpButtonAlphaCoroutine(0.5f, QuitButton, QuitButton.GetComponent<Image>())));
+        StartCoroutine(LerpTextAlphaCoroutine(1f, titleText));
+
+        if (GameManager.instance.didGetToEnding)
+        {
+            StartCoroutine(LerpTextAlphaCoroutine(1f, endingText));
+        }
+
+        StartCoroutine(delayCoroutine(1f, LerpTextAlphaCoroutine(1f, StartText)));
+        StartCoroutine(delayCoroutine(1f, LerpTextAlphaCoroutine(1f, QuitText)));
+        StartCoroutine(delayCoroutine(1f, LerpTextAlphaCoroutine(1f, creditsText)));
+        StartCoroutine(delayCoroutine(1f, LerpButtonAlphaCoroutine(1f, StartButton, StartButton.GetComponent<Image>())));
+        StartCoroutine(delayCoroutine(1f, LerpButtonAlphaCoroutine(1f, QuitButton, QuitButton.GetComponent<Image>())));
+        StartCoroutine(delayCoroutine(1f, LerpButtonAlphaCoroutine(1f, creditsButton, creditsButton.GetComponent<Image>())));
     }
 
     // Update is called once per frame
