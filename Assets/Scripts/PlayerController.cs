@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public bool hasAtlasBeacon;
     public bool hasApollyonBeacon;
     public bool hasZeusBeacon;
+    public bool hasApollyonAstronaut;
 
     private float _oxygen = 100f;
 
