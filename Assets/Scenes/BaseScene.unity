@@ -1132,7 +1132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66664106}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AnglerStart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3105,7 +3105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 267632151}
   - component: {fileID: 267632152}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particle System Force Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4891,7 +4891,7 @@ GameObject:
   - component: {fileID: 353883685}
   - component: {fileID: 353883687}
   - component: {fileID: 353883686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11824,7 +11824,8 @@ GameObject:
   - component: {fileID: 702375364}
   - component: {fileID: 702375366}
   - component: {fileID: 702375365}
-  m_Layer: 0
+  - component: {fileID: 702375367}
+  m_Layer: 7
   m_Name: FrostParticles (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15512,7 +15513,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -15575,7 +15576,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15628,7 +15629,7 @@ ParticleSystem:
     m_EnergyLossOnCollision:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -15683,11 +15684,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 127
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -16647,6 +16648,18 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &702375367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702375363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5299351ccd23ba841a92aa0dec83ccbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &712017942
 GameObject:
   m_ObjectHideFlags: 0
@@ -16658,7 +16671,7 @@ GameObject:
   - component: {fileID: 712017943}
   - component: {fileID: 712017945}
   - component: {fileID: 712017944}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21603,7 +21616,7 @@ GameObject:
   - component: {fileID: 731559425}
   - component: {fileID: 731559424}
   - component: {fileID: 731559428}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Comet
   m_TagString: Waypoint
   m_Icon: {fileID: 0}
@@ -21629,8 +21642,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 20, y: 20, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &731559425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21725,6 +21738,8 @@ MonoBehaviour:
   MonsterEndTransform: {fileID: 1088865920}
   stationTransform: {fileID: 731559427}
   monster: {fileID: 7398710709486990060, guid: 0e4973be90ccef94b96cb50ed85699f6, type: 3}
+  monsterApproachSound: {fileID: 8300000, guid: 33d68947291681b4b8bf60a26c806e7c,
+    type: 3}
 --- !u!1 &738051908
 GameObject:
   m_ObjectHideFlags: 0
@@ -22687,7 +22702,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1951211527}
   m_Direction: 2
   m_Value: 0.99990696
-  m_Size: 0.97776634
+  m_Size: 0.9777663
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24437,7 +24452,6 @@ GameObject:
   - component: {fileID: 1124467342}
   - component: {fileID: 1124467341}
   - component: {fileID: 1124467340}
-  - component: {fileID: 1124467339}
   m_Layer: 0
   m_Name: EarthJPG
   m_TagString: Untagged
@@ -24445,28 +24459,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1124467339
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124467338}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1124467340
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24864,7 +24856,7 @@ GameObject:
   - component: {fileID: 1205471528}
   - component: {fileID: 1205471530}
   - component: {fileID: 1205471529}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29844,7 +29836,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1218239642}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -30073,7 +30065,7 @@ GameObject:
   - component: {fileID: 1336146013}
   - component: {fileID: 1336146015}
   - component: {fileID: 1336146014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35350,7 +35342,7 @@ GameObject:
   - component: {fileID: 1369232838}
   - component: {fileID: 1369232840}
   - component: {fileID: 1369232839}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42454,7 +42446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692826725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AnglerEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44631,7 +44623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903721398}
   serializedVersion: 2
-  m_LocalRotation: {x: -2.9522337e-17, y: 0.3892045, z: 1.2473764e-17, w: 0.9211514}
+  m_LocalRotation: {x: 2.9522334e-17, y: 0.3892045, z: -1.2473763e-17, w: 0.9211514}
   m_LocalPosition: {x: -83.78033, y: 31.38, z: -17.900398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45254,7 +45246,7 @@ GameObject:
   - component: {fileID: 2009479377}
   - component: {fileID: 2009479379}
   - component: {fileID: 2009479378}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrostParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,6 +14,8 @@ public class AnglerAttack : MonoBehaviour
     public GameObject monster;
     GameObject curMonster;
 
+
+    public AudioClip monsterApproachSound;
     AudioSource source;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,7 +39,7 @@ public class AnglerAttack : MonoBehaviour
     {
 
         //Start coroutine for the monster lerping from one position to the next.
-        StartCoroutine(lerpCoroutine(2.5f, MonsterStartTransform, MonsterEndTransform));
+        StartCoroutine(lerpCoroutine(1.5f, MonsterStartTransform, MonsterEndTransform));
         //StartCoroutine(lerpCoroutine(1f, MonsterStartTransform, MonsterEndTransform));
 
         //Play some random metal sounds
@@ -50,7 +52,7 @@ public class AnglerAttack : MonoBehaviour
     public IEnumerator lerpCoroutine(float totalTime, Transform start, Transform end)
     {
         float currentTime = 0f;
-        Vector3 startPos = PlayerController.instance.transform.position + (PlayerController.instance.transform.forward.normalized * 30f);
+        Vector3 startPos = ShipController.instance.transform.position + (ShipController.instance.transform.forward.normalized * 30f);
         bool didPlayClip = false;
         if (curMonster == null)
         {
@@ -58,11 +60,17 @@ public class AnglerAttack : MonoBehaviour
             curMonster = GameObject.Instantiate(monster, startPos, stationTransform.transform.rotation);
             source = curMonster.GetComponent<AudioSource>();
         }
+
+        if (source != null)
+        {
+            source.PlayOneShot(monsterApproachSound);
+        }
+
         while (currentTime < totalTime)
         {
-            startPos = PlayerController.instance.transform.position + (PlayerController.instance.transform.forward.normalized * 30f);
+            startPos = ShipController.instance.transform.position + (ShipController.instance.transform.forward.normalized * 30f);
             if (curMonster != null) { 
-                curMonster.transform.rotation = Quaternion.LookRotation(PlayerController.instance.transform.position - curMonster.transform.position);
+                curMonster.transform.rotation = Quaternion.LookRotation(ShipController.instance.transform.position - curMonster.transform.position);
                 if (currentTime >= totalTime - 0.01f)
                 {
                     currentTime = totalTime;
@@ -75,7 +83,7 @@ public class AnglerAttack : MonoBehaviour
                     //PlayerController.instance.DoCameraShake(0.1f, 0.5f, 0.5f);
                     didPlayClip = true;
                 }
-                curMonster.transform.position = (Vector3.Lerp(startPos, end.position /*+ (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f)*/, currentTime / totalTime));
+                curMonster.transform.position = (Vector3.Lerp(startPos, ShipController.instance.transform.position /*+ (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f)*/, currentTime / totalTime));
             }
             currentTime += Time.deltaTime;
             yield return null;

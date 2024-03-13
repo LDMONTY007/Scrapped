@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Brown
-    second: {fileID: 2100000, guid: 986c53fdf6a0d2e419ab42d3ea95f908, type: 2}
+    second: {fileID: 2100000, guid: e1e5b8e3f82a9fd45983e627d5ef8d29, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
