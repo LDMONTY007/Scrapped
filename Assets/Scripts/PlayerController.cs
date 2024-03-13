@@ -580,6 +580,8 @@ public class PlayerController : MonoBehaviour
     {
         //make player visible;
         playerModel.SetActive(true);
+        rb.linearVelocity = Vector3.zero;
+        rb.position = playerControlPos.position;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

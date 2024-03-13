@@ -13,6 +13,7 @@ TagManager:
   - Beacon
   - Scrap
   - Pda
+  - Astronaut
   layers:
   - Default
   - TransparentFX
