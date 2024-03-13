@@ -37,7 +37,7 @@ public class AnglerAttack : MonoBehaviour
     {
 
         //Start coroutine for the monster lerping from one position to the next.
-        StartCoroutine(lerpCoroutine(5f, MonsterStartTransform, MonsterEndTransform));
+        StartCoroutine(lerpCoroutine(2.5f, MonsterStartTransform, MonsterEndTransform));
         //StartCoroutine(lerpCoroutine(1f, MonsterStartTransform, MonsterEndTransform));
 
         //Play some random metal sounds
@@ -60,6 +60,7 @@ public class AnglerAttack : MonoBehaviour
         }
         while (currentTime < totalTime)
         {
+            startPos = PlayerController.instance.transform.position + (PlayerController.instance.transform.forward.normalized * 30f);
             if (curMonster != null) { 
                 curMonster.transform.rotation = Quaternion.LookRotation(PlayerController.instance.transform.position - curMonster.transform.position);
                 if (currentTime >= totalTime - 0.01f)
@@ -74,7 +75,7 @@ public class AnglerAttack : MonoBehaviour
                     //PlayerController.instance.DoCameraShake(0.1f, 0.5f, 0.5f);
                     didPlayClip = true;
                 }
-                curMonster.transform.position = (Vector3.Lerp(startPos, end.position + (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f), currentTime / totalTime));
+                curMonster.transform.position = (Vector3.Lerp(startPos, end.position /*+ (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f)*/, currentTime / totalTime));
             }
             currentTime += Time.deltaTime;
             yield return null;

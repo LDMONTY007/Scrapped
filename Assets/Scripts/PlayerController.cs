@@ -583,6 +583,7 @@ public class PlayerController : MonoBehaviour
         playerModel.SetActive(true);
         rb.linearVelocity = Vector3.zero;
         rb.position = playerControlPos.position;
+        rb.rotation = shipController.transform.rotation;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -595,6 +596,7 @@ public class PlayerController : MonoBehaviour
         fixedJoint = null;
         ShipUI.SetActive(false);
         playerUI.SetActive(true);
+
 
         if (!isOxygenated)
         {

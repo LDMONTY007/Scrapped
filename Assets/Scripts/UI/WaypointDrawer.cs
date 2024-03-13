@@ -122,7 +122,7 @@ public class WaypointDrawer : MonoBehaviour
                 if (useProximity)
                 {
 
-                    Debug.Log("Player:" + playerLoc.position + "Waypoint:" + waypoints[i].transform.position + "Dist:" + Vector3.Distance(playerLoc.position, waypoints[i].transform.position));
+                    //Debug.Log("Player:" + playerLoc.position + "Waypoint:" + waypoints[i].transform.position + "Dist:" + Vector3.Distance(playerLoc.position, waypoints[i].transform.position));
                     if (Vector3.Distance(playerLoc.position, waypoints[i].transform.position) <= proxDistance)
                     {
                         GUI.color = waypointColor;

@@ -91,15 +91,15 @@ public class ImageGradient : MonoBehaviour
                 PlayerController.instance.forceAlignWithShip = true;
         }
         onGradientAnimationStart.Invoke();
-        Debug.Log("ANIMATE COROUTINE");
-        Debug.Log(currentTime + " " + totalTime);
+        //Debug.Log("ANIMATE COROUTINE");
+        //Debug.Log(currentTime + " " + totalTime);
         while (currentTime < totalTime)
         {
-            Debug.Log("ANIMATE COROUTINE 1");
-            Debug.Log(currentTime + " " + totalTime);
+            //Debug.Log("ANIMATE COROUTINE 1");
+            //Debug.Log(currentTime + " " + totalTime);
             if (currentTime >= totalTime - 0.01f)
             {
-                Debug.Log("ANIMATE COROUTINE 2");
+                //Debug.Log("ANIMATE COROUTINE 2");
                 currentTime = totalTime;
             }
             if (useCanvasGroupAlpha)
