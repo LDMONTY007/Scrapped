@@ -112,6 +112,7 @@ public class WaypointDrawer : MonoBehaviour
 
     void OnGUI()
     {
+        GUI.skin.label.fontSize = 24;
         VerifyWaypoints() ;
         for (int i = 0; i < waypoints.Count; i++)
         {
@@ -125,11 +126,11 @@ public class WaypointDrawer : MonoBehaviour
                     if (Vector3.Distance(playerLoc.position, waypoints[i].transform.position) <= proxDistance)
                     {
                         GUI.color = waypointColor;
-                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
-                        GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                        GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - waypointLoc[i].y, 1000, 200), waypoints[i].name);
+                        GUI.Label(new Rect(waypointLoc[i].x - 12, Screen.height - waypointLoc[i].y, 1000, 200), "▲");
                         if (!hideDistance)
                         {
-                            GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                            GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - (waypointLoc[i].y + 20), 1000, 200), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
                         }
 
                     }
@@ -144,11 +145,11 @@ public class WaypointDrawer : MonoBehaviour
                     if (!(Vector3.Distance(playerLoc.position, waypoints[i].transform.position) <= proxDistance))
                     {
                         GUI.color = waypointColor;
-                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
-                        GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                        GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - waypointLoc[i].y, 1000, 200), waypoints[i].name);
+                        GUI.Label(new Rect(waypointLoc[i].x - 12, Screen.height - waypointLoc[i].y, 1000, 200), "▲");
                         if (!hideDistance)
                         {
-                            GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                            GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - (waypointLoc[i].y + 20), 1000, 200), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
                         }
                     }
                     else
@@ -159,11 +160,11 @@ public class WaypointDrawer : MonoBehaviour
                 else
                 {
                     GUI.color = waypointColor;
-                    GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - waypointLoc[i].y, 100, 20), waypoints[i].name);
-                    GUI.Label(new Rect(waypointLoc[i].x - 6, Screen.height - waypointLoc[i].y, 100, 20), "▲");
+                    GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - waypointLoc[i].y, 1000, 200), waypoints[i].name);
+                    GUI.Label(new Rect(waypointLoc[i].x - 12, Screen.height - waypointLoc[i].y, 1000, 200), "▲");
                     if (!hideDistance)
                     {
-                        GUI.Label(new Rect(waypointLoc[i].x + 6, Screen.height - (waypointLoc[i].y + 20), 100, 20), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
+                        GUI.Label(new Rect(waypointLoc[i].x + 12, Screen.height - (waypointLoc[i].y + 20), 1000, 200), Vector3.Distance(playerLoc.position, waypoints[i].transform.position).ToString("F0") + "m");
                     }
                 }
             }
