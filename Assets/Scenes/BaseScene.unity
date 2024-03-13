@@ -38,7 +38,8 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.00009181308, g: 0.00009181308, b: 0.00009181308,
+    a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9047,6 +9048,8 @@ MonoBehaviour:
   moveSpeed: 1
   mouseRotationSpeed: 750
   rollRotationSpeed: 200
+  sensitivity_WebGL: 25
+  roll_sensitivity_WebGL: 93.75
   isControllingShip: 0
   forceAlignWithShip: 0
   isRepairing: 0

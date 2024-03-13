@@ -81,6 +81,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float mouseRotationSpeed = 250f;
     public float rollRotationSpeed = 50f;
+    public float sensitivity_WebGL = 25f;
+    public float roll_sensitivity_WebGL = 5f;
     public bool isControllingShip;
 
     //Shift slows the player down to zero.
@@ -303,10 +305,27 @@ public class PlayerController : MonoBehaviour
 
         if (!isControllingShip)
         {
+            //This is the fix for WebGL having different mouse sensitivity.
+            float x = Input.GetAxisRaw("Mouse X");
+            float y = Input.GetAxisRaw("Mouse Y");
+            float z = camInput.z;
+            if (Application.platform == RuntimePlatform.WebGLPlayer)
+            {
+                x *= sensitivity_WebGL;
+                y *= sensitivity_WebGL;
+                z *= roll_sensitivity_WebGL;
+            }
+            else
+            {
+                x *= mouseRotationSpeed; // your custom sensitivity value...
+                y *= mouseRotationSpeed; // ...which may be user-adjustable
+                z *= rollRotationSpeed;
+            }
+
 
             //Combine all the rotations around their respective axes relative to the current directions
             //which are either the player's Right, Up, and Fwd or the ship's Right, Up, and Fwd.
-            Quaternion newRotation = Quaternion.AngleAxis(camInput.y * mouseRotationSpeed * Time.deltaTime, up) * Quaternion.AngleAxis(-camInput.x * mouseRotationSpeed * Time.deltaTime, right) * Quaternion.AngleAxis(camInput.z * rollRotationSpeed * Time.deltaTime, fwd);
+            Quaternion newRotation = Quaternion.AngleAxis(x * Time.deltaTime, up) * Quaternion.AngleAxis(-y * Time.deltaTime, right) * Quaternion.AngleAxis(z * Time.deltaTime, fwd);
             /*Quaternion newRotation = Quaternion.AngleAxis(camInput.y, transform.up) * Quaternion.AngleAxis(-camInput.x, transform.right) * Quaternion.AngleAxis(camInput.z, transform.forward);*/
 
             if (shouldAlignWithShip)
@@ -686,4 +705,18 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+
+    // define this function:
+    public static float DampenedMovement(float value)
+    {
+
+        if (Mathf.Abs(value) > 1f)
+        {
+            // best value for dampenMouse is 0.5 but better make it user-adjustable
+            return Mathf.Lerp(value, Mathf.Sign(value), /*dampenMouse*/0.5f);
+        }
+        return value;
+    }
+
 }
