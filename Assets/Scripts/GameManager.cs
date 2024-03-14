@@ -28,7 +28,8 @@ public class GameManager
 
     public void EndGame()
     {
+        instance.didGetToEnding = true;
+        Debug.Log(instance.didGetToEnding);
         SceneManager.LoadScene("TitleScene");
-        didGetToEnding = true;
     }
 }

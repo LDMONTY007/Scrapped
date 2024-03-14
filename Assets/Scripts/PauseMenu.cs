@@ -21,14 +21,23 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         pausePanel.SetActive(false);
-        playerControlPanel.SetActive(false);
-        shipControlPanel.SetActive(false);
+        if (playerControlPanel && shipControlPanel)
+        {
+            playerControlPanel.SetActive(false);
+            shipControlPanel.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!playerControlPanel)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Pause();
+            }
+        }
     }
 
     public void Pause()
@@ -41,17 +50,23 @@ public class PauseMenu : MonoBehaviour
                 AudioListener.pause = true;
                 Time.timeScale = 0f;
                 pausePanel.SetActive(true);
-                playerControlPanel.SetActive(true);
-                shipControlPanel.SetActive(true);
 
-                if (playerController.isControllingShip)
+                if (playerControlPanel && shipControlPanel)
                 {
-                    shipPanel.SetActive(false);
+                    playerControlPanel.SetActive(true);
+                    shipControlPanel.SetActive(true);
+
+                    if (playerController.isControllingShip)
+                    {
+                        shipPanel.SetActive(false);
+                    }
+                    else
+                    {
+                        playerPanel.SetActive(false);
+                    }
+
                 }
-                else
-                {
-                    playerPanel.SetActive(false);
-                }
+
                 if (playerController != null)
                 {
                     if (!playerController.isControllingShip)
@@ -63,24 +78,30 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                if (playerController.isControllingShip)
+                if (playerControlPanel && shipControlPanel)
                 {
-                    shipPanel.SetActive(true);
-                }
-                else
-                {
-                    playerPanel.SetActive(true);
+                    if (playerController.isControllingShip)
+                    {
+                        shipPanel.SetActive(true);
+                    }
+                    else
+                    {
+                        playerPanel.SetActive(true);
+                    }
                 }
 
                 AudioListener.pause = false;
                 Time.timeScale = 1f;
                 pausePanel.SetActive(false);
-                shipControlPanel.SetActive(false);
-                playerControlPanel.SetActive(false);
-                if (!playerController.isControllingShip)
+                if (playerControlPanel && shipControlPanel)
                 {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
+                    shipControlPanel.SetActive(false);
+                    playerControlPanel.SetActive(false);
+                    if (!playerController.isControllingShip)
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        Cursor.visible = false;
+                    }
                 }
             }
         }
