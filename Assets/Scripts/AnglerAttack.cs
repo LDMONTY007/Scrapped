@@ -16,13 +16,15 @@ public class AnglerAttack : MonoBehaviour
     GameObject curMonster;
 
 
+    public Transform CamTransform;
+
     public AudioClip monsterApproachSound;
     AudioSource source;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        CamTransform = Camera.main.transform;
     }
 
     // Update is called once per frame
@@ -53,7 +55,7 @@ public class AnglerAttack : MonoBehaviour
     public IEnumerator lerpCoroutine(float totalTime, Transform start, Transform end)
     {
         float currentTime = 0f;
-        Vector3 startPos = ShipController.instance.transform.position + (ShipController.instance.transform.forward.normalized * 30f);
+        Vector3 startPos = CamTransform.position + (CamTransform.forward.normalized * 30f);
         bool didPlayClip = false;
         if (curMonster == null)
         {
@@ -69,9 +71,9 @@ public class AnglerAttack : MonoBehaviour
 
         while (currentTime < totalTime)
         {
-            startPos = ShipController.instance.transform.position + (ShipController.instance.transform.forward.normalized * 30f);
+            startPos = CamTransform.position + (CamTransform.forward.normalized * 30f);
             if (curMonster != null) { 
-                curMonster.transform.rotation = Quaternion.LookRotation(ShipController.instance.transform.position - curMonster.transform.position);
+                curMonster.transform.rotation = Quaternion.LookRotation(CamTransform.position - curMonster.transform.position);
                 if (currentTime >= totalTime - 0.01f)
                 {
                     currentTime = totalTime;
@@ -84,7 +86,7 @@ public class AnglerAttack : MonoBehaviour
                     //PlayerController.instance.DoCameraShake(0.1f, 0.5f, 0.5f);
                     didPlayClip = true;
                 }
-                curMonster.transform.position = (Vector3.Lerp(startPos, ShipController.instance.transform.position /*+ (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f)*/, currentTime / totalTime));
+                curMonster.transform.position = (Vector3.Lerp(startPos, CamTransform.position /*+ (curMonster.transform.up.normalized * 2f) + (PlayerController.instance.transform.forward.normalized * 5f)*/, currentTime / totalTime));
             }
             currentTime += Time.deltaTime;
             yield return null;
