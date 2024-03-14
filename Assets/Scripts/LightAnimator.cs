@@ -13,6 +13,7 @@ public class LightAnimator : MonoBehaviour
 
     private void Start()
     {
+        if (source == null)
         source = GetComponent<AudioSource>();
         StartCoroutine(AnimateLightCoroutine());
     }

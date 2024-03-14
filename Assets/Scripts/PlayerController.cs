@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public bool hasApollyonBeacon;
     public bool hasZeusBeacon;
     public bool hasApollyonAstronaut;
+    public bool hasZeusAstronaut;
+    public bool hasAtlas;
 
     private float _oxygen = 100f;
 
@@ -146,6 +148,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (grappleEnd != null && !doGrapplingHook)
         {
             Destroy(grappleEnd);
@@ -158,6 +162,7 @@ public class PlayerController : MonoBehaviour
 
         if (Cursor.lockState == CursorLockMode.Locked && !shouldAlignWithShip && !forceAlignWithShip)
         {
+            if (!isControllingShip && !pauseMenu.isPaused)
             HandleGrappling();
             HandleCamRotation();
         }
@@ -181,7 +186,6 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && didHitConsole || Input.GetKeyDown(KeyCode.R) && isControllingShip)
         {
-            Debug.Log("HERE");
             if (isControllingShip)
             {
                 StopControllingShip();
@@ -250,9 +254,10 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            promptText.gameObject.SetActive(true);
+                            PlayPromptText("Out of\nScrap");
+                            /*promptText.gameObject.SetActive(true);
                             promptTextGradient.StartAnimatingGradient();
-                            promptText.text = "Out of\nScrap";
+                            promptText.text = "Out of\nScrap";*/
                         }
                     }
                 }
@@ -269,6 +274,20 @@ public class PlayerController : MonoBehaviour
             oxygenSlider.value = oxygen;
         }
 
+    }
+
+    public void PlayPromptText(string text)
+    {
+        promptText.gameObject.SetActive(true);
+        promptTextGradient.StartAnimatingGradient();
+        promptText.text = text;
+    }
+
+    public void PlayPromptText(float time, string text, Gradient gradient)
+    {
+        promptText.gameObject.SetActive(true);
+        promptTextGradient.StartAnimatingGradient(time, gradient);
+        promptText.text = text;
     }
 
     public void HandleGrappling()
@@ -472,7 +491,8 @@ public class PlayerController : MonoBehaviour
         {
             //Make rotation match the ship's rotation.
             //camRotation = shipController.transform.rotation;
-            rb.MoveRotation(shipController.transform.rotation);
+            rb.rotation = shipController.transform.rotation;
+/*            rb.position = playerControlPos.position;*/
         }
         
     }
@@ -531,7 +551,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator OxygenLossCoroutine()
     {
-        while (!isOxygenated)
+        while (!isOxygenated && !isControllingShip)
         {
             oxygen -= oxygenLossIncrement;
             yield return new WaitForSeconds(oxygenLossTimeIncrement);
@@ -542,6 +562,10 @@ public class PlayerController : MonoBehaviour
     {
         //make player invis;
         playerModel.SetActive(false);
+
+        GetComponent<Collider>().enabled = false;
+
+        //rb.isKinematic = true;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -560,9 +584,14 @@ public class PlayerController : MonoBehaviour
         //Lock the player to the ship.
         //shipController.fixedJoint.anchor = playerControlPos.localPosition;
         //shipController.fixedJoint.connectedAnchor = playerControlPos.localPosition;
-        transform.position = shipController.transform.TransformPoint(playerControlPos.localPosition);
-        fixedJoint = gameObject.AddComponent<FixedJoint>();
-        fixedJoint.connectedBody = shipController.rb;
+        //transform.position = playerControlPos.position;
+        //fixedJoint = shipController.AddComponent<FixedJoint>();
+        
+        //fixedJoint.connectedBody = rb;
+        //fixedJoint.enableCollision = false;
+        //fixedJoint.autoConfigureConnectedAnchor = true;
+        //fixedJoint.connectedAnchor = Vector3.zero;
+        //fixedJoint.anchor = Vector3.zero;
         //fixedJoint.connectedAnchor = Vector3.zero;
         //fixedJoint.anchor = playerControlPos.localPosition;
         ShipUI.SetActive(true);
@@ -579,11 +608,9 @@ public class PlayerController : MonoBehaviour
 
     public void StopControllingShip()
     {
+        GetComponent<Collider>().enabled = true;
         //make player visible;
         playerModel.SetActive(true);
-        rb.linearVelocity = Vector3.zero;
-        rb.position = playerControlPos.position;
-        rb.rotation = shipController.transform.rotation;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -592,8 +619,11 @@ public class PlayerController : MonoBehaviour
         cam.SetActive(true);
         shipController.FreezeShip();
         //unlock the player from the ship.
-        Destroy(fixedJoint);
-        fixedJoint = null;
+        //Destroy(fixedJoint);
+        //fixedJoint = null;
+        rb.linearVelocity = Vector3.zero;
+        rb.rotation = shipController.transform.rotation;
+        rb.position = playerControlPos.position;
         ShipUI.SetActive(false);
         playerUI.SetActive(true);
 

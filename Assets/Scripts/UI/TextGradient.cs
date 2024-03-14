@@ -54,4 +54,26 @@ public class TextGradient : MonoBehaviour
         OnGradientAnimationEnd.Invoke();
     }
 
+    public void StartAnimatingGradient(float time, Gradient g)
+    {
+        StartCoroutine(AnimateGradientCoroutine(time, g));
+    }
+
+    //just animates from one end of the gradient to the other end.
+    public IEnumerator AnimateGradientCoroutine(float totTime, Gradient g)
+    {
+        while (currentTime < totTime)
+        {
+            if (currentTime >= totTime - 0.01f)
+            {
+                currentTime = totTime;
+            }
+            _text.color = g.Evaluate(currentTime / totTime);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        currentTime = 0f;
+        OnGradientAnimationEnd.Invoke();
+    }
+
 }
