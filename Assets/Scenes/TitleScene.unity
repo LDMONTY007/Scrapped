@@ -9239,7 +9239,11 @@ PrefabInstance:
       value: Station_Appolyon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -6577237425059042219, guid: 8d13805ce73209f459d0c05b32bbed4e, type: 3}
+    - {fileID: 6443852219947562045, guid: 8d13805ce73209f459d0c05b32bbed4e, type: 3}
+    - {fileID: -3477458294799913631, guid: 8d13805ce73209f459d0c05b32bbed4e, type: 3}
+    - {fileID: 7833249854982934595, guid: 8d13805ce73209f459d0c05b32bbed4e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d13805ce73209f459d0c05b32bbed4e, type: 3}
