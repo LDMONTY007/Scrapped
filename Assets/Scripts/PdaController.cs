@@ -48,6 +48,8 @@ public class PdaController : MonoBehaviour
             Cursor.visible = false;
         }
         gameObject.SetActive(isPDAOpen);
+        //unpause time if so everything goes back to normal.
+        Time.timeScale = 1f;
     }
 
 
@@ -96,6 +98,8 @@ public class PdaController : MonoBehaviour
             Cursor.visible = true;
         }
         gameObject.SetActive(isPDAOpen);
+        //Pause time so nothing happens while reading.
+        Time.timeScale = 0f;
     }
 
     //https://stackoverflow.com/questions/67744910/importing-each-line-from-text-file-from-resources-in-unity-to-list-in-c-sharp
@@ -125,6 +129,8 @@ public class PdaController : MonoBehaviour
             Cursor.visible = true;
         }
         gameObject.SetActive(isPDAOpen);
+        //Pause time so nothing happens while reading.
+        Time.timeScale = 0f;
     }
     
 }

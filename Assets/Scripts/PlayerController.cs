@@ -9,18 +9,24 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region grappling
+    [Header("Grappling")]
     public GameObject grappleEndPrefab;
     private GameObject grappleEnd;
     public float grappleDistance = 20f;
     Vector3 grapplingPoint = Vector3.zero;
 
-    public GameObject playerModel;
-
-    private LineRenderer grappleLine;
-
     private bool didGrapple = false;
     private bool startGrapplingHook => Input.GetMouseButtonDown(0);
     private bool doGrapplingHook => Input.GetMouseButton(0);
+    
+    private LineRenderer grappleLine;
+
+    #endregion
+
+    public GameObject playerModel;
+
+
 
     public static PlayerController instance;
 

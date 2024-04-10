@@ -90,14 +90,25 @@ public class PauseMenu : MonoBehaviour
                     }
                 }
 
-                AudioListener.pause = false;
-                Time.timeScale = 1f;
+
+                //Only set time scale back to 1 if the
+                //PDA is not open. 
+                //This is because the PDA also freezes 
+                //Time while we are reading it.
+                if (!PdaController.Instance.isPDAOpen)
+                {
+                    AudioListener.pause = false;
+                    Time.timeScale = 1f;
+                }
+
+                //Turn off the UI for the pause panel.
                 pausePanel.SetActive(false);
                 if (playerControlPanel && shipControlPanel)
                 {
                     shipControlPanel.SetActive(false);
                     playerControlPanel.SetActive(false);
-                    if (!playerController.isControllingShip)
+                    //Only hide the cursor if we are not controlling the ship or not in a UI menu like the PDA
+                    if (!playerController.isControllingShip && !PdaController.Instance.isPDAOpen)
                     {
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;
